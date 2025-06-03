@@ -9,19 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@react-three/fiber": "^9.0.0-alpha.8",
+    "@shadergradient/react": "^2.0.25",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "dat.gui": "^0.7.9",
     "gsap": "^3.13.0",
     "lucide-react": "^0.511.0",
+    "motion": "^12.16.0",
     "next": "15.3.3",
+    "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "sonner": "^2.0.5",
     "stats.js": "^0.17.0",
+    "tailwind-merge": "^3.3.0",
     "three": "^0.177.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "@types/three": "^0.177.0",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.3"
   }
 }

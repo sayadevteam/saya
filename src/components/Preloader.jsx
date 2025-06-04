@@ -34,7 +34,7 @@ export default function Preloader() {
             transition={{ duration: 1 }}
             className="text-white text-xl md:text-3xl font-bold font-sans tracking-wide text-center px-4"
           >
-            Everyone uses a damn <span className="text-red-600">Preloader</span>
+            Everyone uses a damn <span className="text-red-700">Preloader</span>
           </motion.h1>
         </motion.div>
       )}

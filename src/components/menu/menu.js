@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ModeToggle } from "../ModeToggle";
 import "./menu.css";
 import { InstagramIcon,XIcon, LinkedinIcon, TwitchIcon, TwitterIcon, YoutubeIcon, Instagram, } from "lucide-react";
 import { RiTwitterXLine } from "react-icons/ri";
@@ -13,8 +14,8 @@ import { RiTwitterXLine } from "react-icons/ri";
 const menuLinks = [
   { path: "/", label: "Home" },
   { path: "/services", label: "Services" },
-  { path: "/work", label: "Work" },
-  { path: "/contact", label: "Contact" },
+  { path: "/work", label: "Our Work" },
+  { path: "/contact", label: "Contact Us" },
 ];
 
 const Menu = () => {
@@ -86,7 +87,9 @@ const Menu = () => {
             alt="saya" />
           </Link>
         </div>
+        <ModeToggle/>
         <div onClick={toggleMenu} className="menu-toggle">
+          
           <p>MENU</p>
         </div>
       </div>
@@ -123,17 +126,20 @@ const Menu = () => {
           </div>
 
           <div className="menu-social">
+            
+          </div>
+        </div>
+
+        <div className="menu-contact">
+          
+          <p>saya.dev@gmail.com</p>
+          <p>+91 9136747743</p>
+          <p className="menu-social-title">Socials</p>
             <div className="menu-info-col">
               <Link href="https://www.instagram.com/sayadevteam/"><Instagram className="hover:text-pink-600 transition-colors" /></Link>
               {/* <a href="#"><LinkedinIcon/></a> */}
               <Link href="https://x.com/Sayadevteam"><RiTwitterXLine className="w-6 h-6 hover:text-blue-300 transition-colors" /></Link>
             </div>
-          </div>
-        </div>
-
-        <div className="menu-contact">
-          <p>saya.dev@gmail.com</p>
-          <p>+91 9136747743</p>
         </div>
       </div>
     </div>

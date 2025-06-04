@@ -7,6 +7,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { ModeToggle } from '@/components/ModeToggle';
 import Stats from 'stats.js';
 
 export default function SupernovaCanvas() {
@@ -69,7 +70,7 @@ export default function SupernovaCanvas() {
       easingSpeed: 0.2,
       tintColor: [43, 0, 25],
       tintStrength: 0,
-      grainStrength: 0.16,
+      grainStrength: 0.12,
       bloomStrength: 0.05,
       bloomRadius: 0.14,
       bloomThreshold: 0.043,

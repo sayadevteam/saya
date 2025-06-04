@@ -1,137 +1,210 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Panchang', sans-serif;
-}
+    * {
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Panchang', sans-serif;
+    }
 
-.menu-wrapper {
-  position: relative;
-  z-index: 999;
-}
+    .menu-wrapper {
+      position: relative;
+      z-index: 999;
+    }
 
-/* Top Bar */
-.menu-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-}
+    /* Top Bar */
+    .menu-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
 
-.menu-logo a {
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-}
+    .menu-logo a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+    }
 
-.menu-toggle p {
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
+    .menu-toggle p {
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: #EEE2DF;
-  padding: 2rem;
-  z-index: 50;
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: #EEE2DF;
+      padding: 2rem;
+      z-index: 50;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-overlay.open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .menu-link {
+      font-size: 80px;
+      font-weight: 500;
+      text-transform: uppercase;
+      line-height: 85%;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .menu-overlay-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .menu-close p {
+      color: black;
+      font-weight: 600;
+      font-size: 3em;
+      cursor: pointer;
+    }
+
+    /* Menu Content */
+    .menu-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+      padding-left: 7.5rem;
+      padding-top: 4rem;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      cursor: pointer;
+    }
+
+    .menu-link-item-holder button {
+      color: black;
+      font-size: 80px;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 85%;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+  .menu-social {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 3rem;
+      margin-left: 5px;
+    }
+
+    .menu-social-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+      text-transform: uppercase;
+    }
 
 
+    .menu-info-col {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      font-weight: 500;
+      color: black;
+    }
 
-.menu-overlay.open {
-  pointer-events: auto;
-  opacity: 1;
-}
+    /* Contact */
+    .menu-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      color: black;
+      gap: 0.25rem;
+    }
 
-.menu-link {
-  font-size: 80px;
-  font-weight: 500;
-  text-transform: uppercase;
-  line-height: 85%;
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-bar {
+        padding: 1rem;
+      }
 
+      .menu-overlay {
+        padding: 1rem;
+      }
 
+      .menu-content {
+        padding-left: 0;
+        padding-top: 2rem;
+        align-items: center;
+        text-align: center;
+      }
 
-.menu-overlay-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+      .menu-link {
+        font-size: 40px;
+      }
 
-.menu-close p {
-  color: black;
-  font-weight: 600;
-  font-size: 3em;
-  cursor: pointer;
-}
+      .menu-link-item-holder button {
+        font-size: 40px;
+      }
 
-/* Menu Content */
-.menu-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: center;
-  padding-left: 7.5rem;
-  padding-top: 4rem;
-}
+      .menu-close p {
+        font-size: 2em;
+      }
 
-.menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  cursor: pointer;
-  
-}
+      .menu-social {
+        gap: 2rem;
+        padding-top: 2rem;
+        margin-left: 0;
+        justify-content: center;
+      }
 
-.menu-link-item-holder a {
-  color: black;
-  font-size: 80px;
-  text-transform: uppercase;
-  font-weight: 500;
-  line-height: 85%;
-  letter-spacing: -0.02em;
-  text-decoration: none;
-}
+      .menu-info-col {
+        gap: 1.5rem;
+      }
 
-.menu-social {
-  display: flex;
-  gap: 4rem;
-  padding-top: 3rem;
-  margin-left: 10px;
-}
+      .menu-contact {
+        align-items: center;
+        margin-bottom: 1.5rem;
+        font-size: 14px;
+      }
+    }
 
-.menu-info-col {
-  display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  font-weight: 500;
-  color: black;
-}
+    @media (max-width: 480px) {
+      .menu-link {
+        font-size: 30px;
+      }
 
-/* Contact */
-.menu-contact {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-  margin-bottom: 2.5rem;
-  font-weight: 500;
-  color: black;
-  gap: 0.25rem;
-}
+      .menu-link-item-holder button {
+        font-size: 30px;
+      }
+
+      .menu-social {
+        gap: 1rem;
+      }
+
+      .menu-info-col {
+        gap: 1rem;
+      }
+
+      .menu-contact {
+        font-size: 12px;
+      }
+    }

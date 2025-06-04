@@ -1,19 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Preloader() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 2500); // Adjust duration as needed
+    const timeout = setTimeout(() => {
+      setShowPreloader(false);
+    }, 1700); // Show preloader for 2.5s
+
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <AnimatePresence>
-      {isLoading && (
+      {showPreloader && (
         <motion.div
           key="preloader"
           initial={{ opacity: 1, scale: 1 }}
@@ -28,7 +31,7 @@ export default function Preloader() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1 }}
             className="text-white text-xl md:text-3xl font-bold font-sans tracking-wide text-center px-4"
           >
             Everyone uses a damn <span className="text-red-600">Preloader</span>

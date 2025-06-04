@@ -89,7 +89,7 @@ const Menu = () => {
         </div>
         {/* <ModeToggle/> */}
         <div onClick={toggleMenu} className="menu-toggle">
-          <p>MENU</p>
+          <p className="select-none">MENU</p>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ const Menu = () => {
           </Link> */}
           </div>
           <div onClick={toggleMenu} className="menu-close">
-            <p>&#x2715;</p>
+            <p className="select-none">&#x2715;</p>
           </div>
         </div>
 

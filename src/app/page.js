@@ -973,6 +973,7 @@ export default function SupernovaCanvas() {
           cursor: pointer;
           transition: background 0.3s ease;
           pointer-events: auto;
+          z-index: 1000;
         }
 
         .audio-controls:hover {
@@ -988,6 +989,7 @@ export default function SupernovaCanvas() {
           align-items: center;
           justify-content: center;
           width: 20px;
+          z-index: 1000;
           height: 20px;
           padding: 0;
           transition: transform 0.2s ease;

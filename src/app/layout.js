@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Saya",
+  title: "SAYA",
   description: "Saya is a creative agency specializing in web design, branding, and digital marketing.",
 };
 

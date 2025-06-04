@@ -1065,10 +1065,9 @@ export default function SupernovaCanvas() {
       {/* <div className="coordinates top-left">COSMIC CONTEMPLATION</div> */}
       <div className="coordinates top-right">ALPHA CENTAURI: 4.37 LY</div>
       <div className="center-content">
-        <div className="caption">DISTANT WORLDS BECKON</div>
+        <div className="caption">Websites That Work. Brands That Shine</div>
         <h1 className="main-text">
-          The universe holds its breath in the spaces between stars.
-          Vastness creates the clarity we can't find in proximity.
+          SAYA helps YOUR brand stand out online with sleek website design, smart SEO, and seamless user experience. New site or revamp — we build it to grow your business.
         </h1>
       </div>
       <div className="coordinates bottom-center">

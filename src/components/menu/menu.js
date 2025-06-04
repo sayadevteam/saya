@@ -82,14 +82,13 @@ const Menu = () => {
         <div className="menu-logo">
           <Link href="/">
             <Image src="/logo.png"
-            width={90}
-            height={90}
+            width={80}
+            height={80}
             alt="saya" />
           </Link>
         </div>
         <ModeToggle/>
         <div onClick={toggleMenu} className="menu-toggle">
-          
           <p>MENU</p>
         </div>
       </div>

@@ -195,7 +195,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-start pt-8">
           {/* Contact Us Section */}
           <div ref={contactRef} className="relative mt-12 w-full mx-auto bg-gray-100 dark:bg-black overflow-hidden">
-            <div className="hidden dark:block absolute ">
+            <div className="hidden dark:block absolute inset-0">
               <ShaderGradientCanvas
                 className='w-full h-full'
                 pixelDensity={1}
@@ -252,7 +252,7 @@ export default function Home() {
                 {/* <h2 className='text-sm font-bold text-center dark:text-gold-400'>
                   Contact Us
                 </h2> */}
-                <h2 className="text-5xl mt-10 font-bold text-center text-yellow-500 dark:text-gold-400">
+                <h2 className="text-5xl mt-20 font-bold text-center text-yellow-500 dark:text-gold-400">
                   Get in Touch with us
                 </h2>
                 <p className="text-gray-600 dark:text-white mt-2 text-center">

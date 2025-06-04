@@ -87,7 +87,7 @@ const Menu = () => {
             alt="saya" />
           </Link>
         </div>
-        <ModeToggle/>
+        {/* <ModeToggle/> */}
         <div onClick={toggleMenu} className="menu-toggle">
           <p>MENU</p>
         </div>

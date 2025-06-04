@@ -249,9 +249,9 @@ export default function Home() {
             <div ref={formContainerRef} className="relative bg-gray-100 dark:bg-transparent rounded-lg p-6 max-w-6xl mx-auto">
               {/* --- Contact Form --- */}
               <div>
-                <h2 className='text-sm font-bold text-center dark:text-gold-400'>
+                {/* <h2 className='text-sm font-bold text-center dark:text-gold-400'>
                   Contact Us
-                </h2>
+                </h2> */}
                 <h2 className="text-5xl mt-10 font-bold text-center text-yellow-500 dark:text-gold-400">
                   Get in Touch with us
                 </h2>

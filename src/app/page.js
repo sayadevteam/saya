@@ -1096,7 +1096,7 @@ export default function SupernovaCanvas() {
         <div className="profile-info">
           <p className="profile-name">SAYA</p>
           <p className="profile-twitter">
-            <a href="https://x.com/Sayadevteam" target="_blank" rel="noopener noreferrer">@Sayadevteam</a>
+            <a href="https://x.com/Sayadevteam" target="_blank" rel="noopener noreferrer">@Saya</a>
           </p>
         </div>
       </div>

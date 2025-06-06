@@ -1092,11 +1092,11 @@ export default function SupernovaCanvas() {
         Your browser does not support the audio element.
       </audio>
       <div className="profile-card">
-        <img className="profile-image" src="https://filip-zrnzevic-portfolio-2025-v3.vercel.app/_next/image?url=%2Fimages%2Fprofile003.jpg&w=48&q=75" alt="Filip Zrnzević" />
+        <img className="profile-image" src="/avatar.jpg" alt="Filip Zrnzević" />
         <div className="profile-info">
-          <p className="profile-name">Saya.DEV</p>
+          <p className="profile-name">SAYA</p>
           <p className="profile-twitter">
-            <a href="https://x.com/filipz" target="_blank" rel="noopener noreferrer">@saya</a>
+            <a href="https://x.com/Sayadevteam" target="_blank" rel="noopener noreferrer">@Sayadevteam</a>
           </p>
         </div>
       </div>

@@ -1092,7 +1092,7 @@ export default function SupernovaCanvas() {
         Your browser does not support the audio element.
       </audio>
       <div className="profile-card">
-        <img className="profile-image" src="/avatar.jpg" alt="Filip Zrnzević" />
+        <img className="profile-image" src="/logo.png" alt="Filip Zrnzević" />
         <div className="profile-info">
           <p className="profile-name">SAYA</p>
           <p className="profile-twitter">

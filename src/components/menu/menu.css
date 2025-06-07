@@ -138,6 +138,7 @@
       font-weight: 500;
       color: black;
       gap: 0.25rem;
+      transition: color 0.3s ease;
     }
 
     /* Responsive Styles */

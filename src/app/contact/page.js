@@ -268,7 +268,7 @@ export default function Home() {
                       name="name"
                       type="text"
                       placeholder='Enter your name'
-                      className={`w-full mt-1 p-3 border-1 opacity-30 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-gray-950 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.name ? 'border-red-500' : ''}`}
+                      className={`w-full mt-1 p-3 border-1 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-white dark:text-white/200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.name ? 'border-red-500' : ''}`}
                       required
                       aria-describedby="name-error"
                     />
@@ -287,7 +287,7 @@ export default function Home() {
                       name="email"
                       type="email"
                       placeholder='Enter your email'
-                      className={`w-full mt-1 p-3 border-1 opacity-30 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-gray-950 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.email ? 'border-red-500' : ''}`}
+                      className={`w-full mt-1 p-3 border-1 text-white dark:text-white/200 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.email ? 'border-red-500' : ''}`}
                       required
                       aria-describedby="email-error"
                     />
@@ -306,7 +306,7 @@ export default function Home() {
                       name="message"
                       placeholder='Enter your needs'
                       rows="4"
-                      className={`w-full mt-1 p-3 border-1 opacity-30 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-gray-950 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.message ? 'border-red-500' : ''}`}
+                      className={`w-full mt-1 p-3 border-1 text-white dark:text-white/200 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.message ? 'border-red-500' : ''}`}
                       required
                       aria-describedby="message-error"
                     ></textarea>
@@ -358,7 +358,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <PhoneCall />
               <span className="text-gray-300 hover:text-white transition-colors">
-                9999999999
+                +91 9136747743
               </span>
             </div>
           </div>

@@ -77,7 +77,7 @@ export default function Home() {
           setErrors({ name: false, email: false, message: false });
         },
         (error) => {
-          console.log('FAILED...', error.text);
+          console.log('FAILED...', error);
           toast.error('Failed to send message. Please try again.');
         }
       );

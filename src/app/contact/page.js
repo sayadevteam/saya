@@ -5,7 +5,6 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import Image from 'next/image';
 import emailjs from '@emailjs/browser';
 import { motion } from "framer-motion";
 import { Instagram, Github, Mail, PhoneCall } from "lucide-react";
@@ -32,17 +31,26 @@ export default function Home() {
   const [errors, setErrors] = useState({ name: false, email: false, message: false });
 
   useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_USER_ID);
+    // Initialize EmailJS with the public key (user ID)
+    if (process.env.NEXT_PUBLIC_USER_ID) {
+      emailjs.init(process.env.NEXT_PUBLIC_USER_ID);
+    } else {
+      console.error('EmailJS User ID is missing');
+      toast.error('Configuration error. Please try again later.');
+    }
   }, []);
 
   const validateForm = () => {
     const form = formRef.current;
     const name = form.name.value.trim();
-    const email = form.email.value.trim();;
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
 
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const newErrors = {
       name: !name,
-      email: !email,
+      email: !email || !emailRegex.test(email),
       message: !message,
     };
 
@@ -54,15 +62,14 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      toast("Your query was sent");
-      sendEmail(e);
+      toast.loading('Sending your query...');
+      sendEmail();
     } else {
-      toast.error("Please fill in all required fields");
+      toast.error('Please fill in all required fields correctly');
     }
   };
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const sendEmail = () => {
     emailjs
       .sendForm(
         process.env.NEXT_PUBLIC_SERVICE_ID,
@@ -72,12 +79,14 @@ export default function Home() {
       )
       .then(
         () => {
-          console.log('SUCCESS!');
+          toast.dismiss(); // Dismiss loading toast
+          toast.success('Your query was sent successfully!');
           formRef.current.reset();
           setErrors({ name: false, email: false, message: false });
         },
         (error) => {
-          console.log('FAILED...', error);
+          toast.dismiss(); // Dismiss loading toast
+          console.error('EmailJS Error:', error.text || error);
           toast.error('Failed to send message. Please try again.');
         }
       );

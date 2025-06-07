@@ -38,8 +38,7 @@ export default function Home() {
   const validateForm = () => {
     const form = formRef.current;
     const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const email = form.email.value.trim();;
 
     const newErrors = {
       name: !name,

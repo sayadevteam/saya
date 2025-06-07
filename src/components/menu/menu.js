@@ -149,14 +149,14 @@ const handleCopy = (text, type) => {
   onClick={() => handleCopy("saya.dev@gmail.com", "email")}
   className="cursor-pointer hover:text-[#F06543] transition-colors"
 >
-  {copiedEmail ? "{email copied}" : "saya.dev@gmail.com"}
+  {copiedEmail ? "{Email copied}" : "saya.dev@gmail.com"}
 </p>
 
 <p
   onClick={() => handleCopy("+91 9136747743", "phone")}
   className="cursor-pointer hover:text-[#F06543] transition-colors"
 >
-  {copiedPhone ? "{phone no copied}" : "+91 9136747743"}
+  {copiedPhone ? "{Phone no copied}" : "+91 9136747743"}
 </p>
 
           <p className="menu-social-title">Socials</p>

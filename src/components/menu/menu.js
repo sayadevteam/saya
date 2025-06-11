@@ -24,6 +24,20 @@ const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tl = useRef();
   const exitTl = useRef();
+  const [copiedEmail, setCopiedEmail] = useState(false);
+const [copiedPhone, setCopiedPhone] = useState(false);
+const handleCopy = (text, type) => {
+  navigator.clipboard.writeText(text);
+  if (type === "email") {
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 4000);
+  } else if (type === "phone") {
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 4000);
+  }
+};
+
+
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -131,8 +145,20 @@ const Menu = () => {
 
         <div className="menu-contact">
           
-          <p>saya.dev@gmail.com</p>
-          <p>+91 9136747743</p>
+          <p
+  onClick={() => handleCopy("saya.dev@gmail.com", "email")}
+  className="cursor-pointer hover:text-[#F06543] transition-colors"
+>
+  {copiedEmail ? "{Email copied}" : "saya.dev@gmail.com"}
+</p>
+
+<p
+  onClick={() => handleCopy("+91 9136747743", "phone")}
+  className="cursor-pointer hover:text-[#F06543] transition-colors"
+>
+  {copiedPhone ? "{Phone no copied}" : "+91 9136747743"}
+</p>
+
           <p className="menu-social-title">Socials</p>
             <div className="menu-info-col">
               <Link href="https://www.instagram.com/sayadevteam/"><Instagram className="hover:text-pink-600 transition-colors" /></Link>

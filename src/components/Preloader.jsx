@@ -34,7 +34,9 @@ export default function Preloader() {
             transition={{ duration: 1 }}
             className="text-white text-xl md:text-3xl font-bold font-sans tracking-wide text-center px-4"
           >
-            Everyone uses a damn <span className="text-red-700">Preloader</span>
+            <div className="flex justify-center mb-5"><img src={"./logo.png"} height={100} width={100}/></div>
+            <span className="text-orange-400 block">SAYA</span>
+            {/* <span className="block text-md font-mono">Journey to digital excellence begins</span> */}
           </motion.h1>
         </motion.div>
       )}

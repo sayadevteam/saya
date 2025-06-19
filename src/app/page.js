@@ -1,21 +1,20 @@
+"use client";
 
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { ModeToggle } from '@/components/ModeToggle';
-import Stats from 'stats.js';
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { ModeToggle } from "@/components/ModeToggle";
+import Stats from "stats.js";
 
 export default function SupernovaCanvas() {
   const canvasContainerRef = useRef(null);
   const audioRef = useRef(null);
   const rendererRef = useRef(null);
   const animationFrameIdRef = useRef(null);
-  const [currentTheme, setCurrentTheme] = useState('amber');
+  const [currentTheme, setCurrentTheme] = useState("amber");
 
   useEffect(() => {
     // Initialize renderer
@@ -27,7 +26,7 @@ export default function SupernovaCanvas() {
     // Append renderer to container
     const container = canvasContainerRef.current;
     if (!container) {
-      console.error('Canvas container not found');
+      console.error("Canvas container not found");
       return;
     }
     container.appendChild(renderer.domElement);
@@ -35,21 +34,222 @@ export default function SupernovaCanvas() {
     // Stats
     const stats = new Stats();
     stats.showPanel(0);
-    stats.dom.style.cssText = 'position:absolute;top:0;left:0;opacity:0.9;display:none;';
+    stats.dom.style.cssText =
+      "position:absolute;top:0;left:0;opacity:0.9;display:none;";
     document.body.appendChild(stats.dom);
 
     // Color themes
     const colorThemes = {
-      cosmic: { name: 'Cosmic Purple', baseColor: [0.7, 0.5, 1.0], accentColor: [0.8, 0.3, 0.8], edgeColor: [0.3, 0.1, 0.6], glowColor: [0.6, 0.2, 1.0], tintColor: [43, 0, 25], tintStrength: 0.36, bloomStrength: 0.05 },
-      azure: { name: 'Azure Nebula', baseColor: [0.4, 0.7, 1.0], accentColor: [0.2, 0.5, 0.9], edgeColor: [0.0, 0.2, 0.5], glowColor: [0.5, 0.8, 1.0], tintColor: [0, 30, 60], tintStrength: 0.4, bloomStrength: 0.05 },
-      emerald: { name: 'Emerald Dust', baseColor: [0.3, 0.8, 0.5], accentColor: [0.1, 0.6, 0.4], edgeColor: [0.0, 0.4, 0.2], glowColor: [0.4, 1.0, 0.6], tintColor: [0, 50, 30], tintStrength: 0.35, bloomStrength: 0.05 },
-      crimson: { name: 'Crimson Nova', baseColor: [1.0, 0.4, 0.4], accentColor: [0.9, 0.2, 0.2], edgeColor: [0.5, 0.1, 0.1], glowColor: [1.0, 0.3, 0.3], tintColor: [60, 0, 10], tintStrength: 0.45, bloomStrength: 0.05 },
-      amber: { name: 'Amber Glow', baseColor: [1.0, 0.8, 0.3], accentColor: [0.9, 0.6, 0.1], edgeColor: [0.6, 0.3, 0.0], glowColor: [1.0, 0.7, 0.2], tintColor: [43, 0, 25], tintStrength: 0, bloomStrength: 0.05 },
-      twilight: { name: 'Twilight Gradient', baseColor: [0.6, 0.4, 0.8], accentColor: [0.3, 0.5, 0.9], edgeColor: [0.1, 0.0, 0.3], glowColor: [0.8, 0.6, 1.0], tintColor: [20, 10, 40], tintStrength: 0.38, bloomStrength: 0.05 },
-      sunset: { name: 'Sunset Gradient', baseColor: [1.0, 0.6, 0.4], accentColor: [0.9, 0.4, 0.3], edgeColor: [0.5, 0.2, 0.0], glowColor: [1.0, 0.8, 0.5], tintColor: [43, 0, 25], tintStrength: 0, bloomStrength: 0.05 },
-      oceanic: { name: 'Oceanic Gradient', baseColor: [0.3, 0.7, 0.8], accentColor: [0.1, 0.5, 0.7], edgeColor: [0.0, 0.3, 0.5], glowColor: [0.5, 0.9, 1.0], tintColor: [0, 40, 50], tintStrength: 0.37, bloomStrength: 0.05 },
-      celestial: { name: 'Celestial Light', baseColor: [0.95, 0.95, 1.0], accentColor: [0.9, 0.9, 1.0], edgeColor: [0.8, 0.8, 0.9], glowColor: [1.0, 1.0, 1.0], tintColor: [240, 240, 255], tintStrength: 0.2, bloomStrength: 0.08 },
-      abyss: { name: 'Abyssal Depths', baseColor: [0.25, 0.28, 0.35], accentColor: [0.15, 0.18, 0.25], edgeColor: [0.08, 0.1, 0.15], glowColor: [0.4, 0.45, 0.6], tintColor: [20, 22, 30], tintStrength: 0.3, bloomStrength: 0.12 },
+      echoCircuit: {
+        name: "Echo Circuit",
+        baseColor: [0.3, 0.6, 0.9],
+        accentColor: [0.2, 0.8, 0.6],
+        edgeColor: [0.0, 0.3, 0.4],
+        glowColor: [0.5, 1.0, 0.9],
+        tintColor: [40, 180, 200],
+        tintStrength: 0.4,
+        bloomStrength: 0.08,
+      },
+      plasmaField: {
+        name: "Plasma Field",
+        baseColor: [1.0, 0.7, 1.0],
+        accentColor: [0.8, 0.4, 1.0],
+        edgeColor: [0.3, 0.1, 0.4],
+        glowColor: [1.0, 0.9, 1.0],
+        tintColor: [240, 130, 255],
+        tintStrength: 0.47,
+        bloomStrength: 0.1,
+      },
+      zenithSky: {
+        name: "Zenith Sky",
+        baseColor: [0.4, 0.7, 1.0],
+        accentColor: [0.6, 0.8, 1.0],
+        edgeColor: [0.2, 0.3, 0.5],
+        glowColor: [0.8, 1.0, 1.0],
+        tintColor: [180, 220, 255],
+        tintStrength: 0.3,
+        bloomStrength: 0.05,
+      },
+      starlightAsh: {
+        name: "Starlight Ash",
+        baseColor: [0.6, 0.6, 0.65],
+        accentColor: [0.8, 0.8, 0.9],
+        edgeColor: [0.3, 0.3, 0.4],
+        glowColor: [1.0, 1.0, 1.0],
+        tintColor: [200, 200, 230],
+        tintStrength: 0.25,
+        bloomStrength: 0.06,
+      },
+      lunarPearl: {
+        name: "Lunar Pearl",
+        baseColor: [0.9, 0.9, 1.0],
+        accentColor: [0.8, 0.8, 0.95],
+        edgeColor: [0.6, 0.6, 0.8],
+        glowColor: [1.0, 1.0, 1.0],
+        tintColor: [230, 230, 255],
+        tintStrength: 0.18,
+        bloomStrength: 0.05,
+      },
+      astralDust: {
+        name: "Astral Dust",
+        baseColor: [0.8, 0.7, 0.9],
+        accentColor: [0.6, 0.6, 1.0],
+        edgeColor: [0.3, 0.3, 0.5],
+        glowColor: [1.0, 0.8, 1.0],
+        tintColor: [200, 180, 255],
+        tintStrength: 0.33,
+        bloomStrength: 0.08,
+      },
+      chromaticVoid: {
+        name: "Chromatic Void",
+        baseColor: [0.2, 0.2, 0.25],
+        accentColor: [0.8, 0.2, 1.0],
+        edgeColor: [0.1, 0.0, 0.2],
+        glowColor: [1.0, 0.5, 1.0],
+        tintColor: [60, 0, 90],
+        tintStrength: 0.6,
+        bloomStrength: 0.12,
+      },
+      ghostlight: {
+        name: "Ghostlight Mist",
+        baseColor: [0.8, 0.85, 1.0],
+        accentColor: [0.6, 0.7, 1.0],
+        edgeColor: [0.4, 0.5, 0.7],
+        glowColor: [0.9, 0.95, 1.0],
+        tintColor: [200, 210, 255],
+        tintStrength: 0.3,
+        bloomStrength: 0.07,
+      },
+      galaxyDust: {
+        name: "Galaxy Dust",
+        baseColor: [0.5, 0.4, 0.7],
+        accentColor: [0.7, 0.5, 0.9],
+        edgeColor: [0.3, 0.2, 0.5],
+        glowColor: [1.0, 0.7, 1.0],
+        tintColor: [90, 60, 120],
+        tintStrength: 0.35,
+        bloomStrength: 0.1,
+      },
+      ethereal: {
+        name: "Ethereal Veil",
+        baseColor: [0.9, 0.8, 1.0],
+        accentColor: [0.8, 0.7, 1.0],
+        edgeColor: [0.6, 0.6, 0.9],
+        glowColor: [1.0, 0.9, 1.0],
+        tintColor: [240, 200, 255],
+        tintStrength: 0.28,
+        bloomStrength: 0.07,
+      },
+      moondust: {
+        name: "Moondust Gray",
+        baseColor: [0.85, 0.85, 0.9],
+        accentColor: [0.7, 0.7, 0.8],
+        edgeColor: [0.4, 0.4, 0.5],
+        glowColor: [1.0, 1.0, 1.0],
+        tintColor: [230, 230, 240],
+        tintStrength: 0.2,
+        bloomStrength: 0.05,
+      },
+      cosmic: {
+        name: "Cosmic Purple",
+        baseColor: [0.7, 0.5, 1.0],
+        accentColor: [0.8, 0.3, 0.8],
+        edgeColor: [0.3, 0.1, 0.6],
+        glowColor: [0.6, 0.2, 1.0],
+        tintColor: [43, 0, 25],
+        tintStrength: 0.36,
+        bloomStrength: 0.05,
+      },
+      azure: {
+        name: "Azure Nebula",
+        baseColor: [0.4, 0.7, 1.0],
+        accentColor: [0.2, 0.5, 0.9],
+        edgeColor: [0.0, 0.2, 0.5],
+        glowColor: [0.5, 0.8, 1.0],
+        tintColor: [0, 30, 60],
+        tintStrength: 0.4,
+        bloomStrength: 0.05,
+      },
+      emerald: {
+        name: "Emerald Dust",
+        baseColor: [0.3, 0.8, 0.5],
+        accentColor: [0.1, 0.6, 0.4],
+        edgeColor: [0.0, 0.4, 0.2],
+        glowColor: [0.4, 1.0, 0.6],
+        tintColor: [0, 50, 30],
+        tintStrength: 0.35,
+        bloomStrength: 0.05,
+      },
+      crimson: {
+        name: "Crimson Nova",
+        baseColor: [1.0, 0.4, 0.4],
+        accentColor: [0.9, 0.2, 0.2],
+        edgeColor: [0.5, 0.1, 0.1],
+        glowColor: [1.0, 0.3, 0.3],
+        tintColor: [60, 0, 10],
+        tintStrength: 0.45,
+        bloomStrength: 0.05,
+      },
+      amber: {
+        name: "Amber Glow",
+        baseColor: [1.0, 0.8, 0.3],
+        accentColor: [0.9, 0.6, 0.1],
+        edgeColor: [0.6, 0.3, 0.0],
+        glowColor: [1.0, 0.7, 0.2],
+        tintColor: [43, 0, 25],
+        tintStrength: 0,
+        bloomStrength: 0.05,
+      },
+      twilight: {
+        name: "Twilight Gradient",
+        baseColor: [0.6, 0.4, 0.8],
+        accentColor: [0.3, 0.5, 0.9],
+        edgeColor: [0.1, 0.0, 0.3],
+        glowColor: [0.8, 0.6, 1.0],
+        tintColor: [20, 10, 40],
+        tintStrength: 0.38,
+        bloomStrength: 0.05,
+      },
+      sunset: {
+        name: "Sunset Gradient",
+        baseColor: [1.0, 0.6, 0.4],
+        accentColor: [0.9, 0.4, 0.3],
+        edgeColor: [0.5, 0.2, 0.0],
+        glowColor: [1.0, 0.8, 0.5],
+        tintColor: [43, 0, 25],
+        tintStrength: 0,
+        bloomStrength: 0.05,
+      },
+      oceanic: {
+        name: "Oceanic Gradient",
+        baseColor: [0.3, 0.7, 0.8],
+        accentColor: [0.1, 0.5, 0.7],
+        edgeColor: [0.0, 0.3, 0.5],
+        glowColor: [0.5, 0.9, 1.0],
+        tintColor: [0, 40, 50],
+        tintStrength: 0.37,
+        bloomStrength: 0.05,
+      },
+      celestial: {
+        name: "Celestial Light",
+        baseColor: [0.95, 0.95, 1.0],
+        accentColor: [0.9, 0.9, 1.0],
+        edgeColor: [0.8, 0.8, 0.9],
+        glowColor: [1.0, 1.0, 1.0],
+        tintColor: [240, 240, 255],
+        tintStrength: 0.2,
+        bloomStrength: 0.08,
+      },
+      abyss: {
+        name: "Abyssal Depths",
+        baseColor: [0.25, 0.28, 0.35],
+        accentColor: [0.15, 0.18, 0.25],
+        edgeColor: [0.08, 0.1, 0.15],
+        glowColor: [0.4, 0.45, 0.6],
+        tintColor: [20, 22, 30],
+        tintStrength: 0.3,
+        bloomStrength: 0.12,
+      },
     };
 
     // Settings
@@ -78,11 +278,11 @@ export default function SupernovaCanvas() {
       particleSize: 0.5,
       particleSpeed: 0.2,
       particleDepth: 50,
-      particleColor: '#ffffff',
+      particleColor: "#ffffff",
       backgroundParticleCount: 5000,
       backgroundParticleSize: 0.3,
       backgroundParticleDepth: 100,
-      backgroundParticleColor: '#666666',
+      backgroundParticleColor: "#666666",
     };
 
     // Mouse tracking
@@ -91,7 +291,11 @@ export default function SupernovaCanvas() {
     let mouseDistance = 1.0;
     let isMouseInCanvas = false;
 
-    const currentValues = { rotationAngle: 0, zoom: settings.zoom, zoomHistory: Array(10).fill(settings.zoom) };
+    const currentValues = {
+      rotationAngle: 0,
+      zoom: settings.zoom,
+      zoomHistory: Array(10).fill(settings.zoom),
+    };
     const targetValues = { rotationAngle: 0, zoom: settings.zoom };
 
     function lerp(start, end, factor) {
@@ -128,15 +332,18 @@ export default function SupernovaCanvas() {
       smoothedMouse.y = lerp(smoothedMouse.y, rawMouseY, 0.1);
       mouse.x = smoothedMouse.x;
       mouse.y = smoothedMouse.y;
-      mouseDistance = Math.min(1.0, Math.sqrt(mouse.x * mouse.x + mouse.y * mouse.y));
+      mouseDistance = Math.min(
+        1.0,
+        Math.sqrt(mouse.x * mouse.x + mouse.y * mouse.y)
+      );
     };
 
     const handleMouseOut = () => {
       isMouseInCanvas = false;
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseout', handleMouseOut);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseout", handleMouseOut);
 
     // Noise textures
     function createNoiseTexture(size = 256) {
@@ -177,7 +384,9 @@ export default function SupernovaCanvas() {
     const supernovaShader = {
       uniforms: {
         iTime: { value: 0 },
-        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        iResolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        },
         iMouse: { value: new THREE.Vector4() },
         iChannel0: { value: noiseTexture1 },
         iChannel1: { value: keyboardTexture },
@@ -186,14 +395,44 @@ export default function SupernovaCanvas() {
         dithering: { value: settings.dithering },
         background: { value: settings.background },
         toneMapping: { value: settings.toneMapping },
-        tintColor: { value: new THREE.Vector3(settings.tintColor[0] / 255, settings.tintColor[1] / 255, settings.tintColor[2] / 255) },
+        tintColor: {
+          value: new THREE.Vector3(
+            settings.tintColor[0] / 255,
+            settings.tintColor[1] / 255,
+            settings.tintColor[2] / 255
+          ),
+        },
         tintStrength: { value: settings.tintStrength },
         grainStrength: { value: settings.grainStrength },
         rotationAngle: { value: 0 },
-        baseColor: { value: new THREE.Vector3(colorThemes.amber.baseColor[0], colorThemes.amber.baseColor[1], colorThemes.amber.baseColor[2]) },
-        accentColor: { value: new THREE.Vector3(colorThemes.amber.accentColor[0], colorThemes.amber.accentColor[1], colorThemes.amber.accentColor[2]) },
-        edgeColor: { value: new THREE.Vector3(colorThemes.amber.edgeColor[0], colorThemes.amber.edgeColor[1], colorThemes.amber.edgeColor[2]) },
-        glowColor: { value: new THREE.Vector3(colorThemes.amber.glowColor[0], colorThemes.amber.glowColor[1], colorThemes.amber.glowColor[2]) },
+        baseColor: {
+          value: new THREE.Vector3(
+            colorThemes.amber.baseColor[0],
+            colorThemes.amber.baseColor[1],
+            colorThemes.amber.baseColor[2]
+          ),
+        },
+        accentColor: {
+          value: new THREE.Vector3(
+            colorThemes.amber.accentColor[0],
+            colorThemes.amber.accentColor[1],
+            colorThemes.amber.accentColor[2]
+          ),
+        },
+        edgeColor: {
+          value: new THREE.Vector3(
+            colorThemes.amber.edgeColor[0],
+            colorThemes.amber.edgeColor[1],
+            colorThemes.amber.edgeColor[2]
+          ),
+        },
+        glowColor: {
+          value: new THREE.Vector3(
+            colorThemes.amber.glowColor[0],
+            colorThemes.amber.glowColor[1],
+            colorThemes.amber.glowColor[2]
+          ),
+        },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -384,7 +623,9 @@ export default function SupernovaCanvas() {
       uniforms: {
         tDiffuse: { value: null },
         time: { value: 0.0 },
-        resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        resolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        },
         intensity: { value: settings.grainStrength },
       },
       vertexShader: `
@@ -494,7 +735,12 @@ export default function SupernovaCanvas() {
 
     // Particle scene
     const particleScene = new THREE.Scene();
-    const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const perspectiveCamera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
     perspectiveCamera.position.z = 50;
 
     let particles, particlesMaterial;
@@ -524,12 +770,25 @@ export default function SupernovaCanvas() {
         seedArray[i] = Math.random() * 100;
       }
 
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-      particlesGeometry.setAttribute('scale', new THREE.BufferAttribute(scaleArray, 1));
-      particlesGeometry.setAttribute('seed', new THREE.BufferAttribute(seedArray, 1));
+      particlesGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(posArray, 3)
+      );
+      particlesGeometry.setAttribute(
+        "scale",
+        new THREE.BufferAttribute(scaleArray, 1)
+      );
+      particlesGeometry.setAttribute(
+        "seed",
+        new THREE.BufferAttribute(seedArray, 1)
+      );
 
       particlesMaterial = new THREE.ShaderMaterial({
-        uniforms: { time: { value: 0 }, size: { value: settings.particleSize }, color: { value: new THREE.Color(settings.particleColor) } },
+        uniforms: {
+          time: { value: 0 },
+          size: { value: settings.particleSize },
+          color: { value: new THREE.Color(settings.particleColor) },
+        },
         vertexShader: `
           attribute float scale;
           attribute float seed;
@@ -593,11 +852,21 @@ export default function SupernovaCanvas() {
         scaleArray[i] = 0.3 + Math.random() * 0.4;
       }
 
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-      particlesGeometry.setAttribute('scale', new THREE.BufferAttribute(scaleArray, 1));
+      particlesGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(posArray, 3)
+      );
+      particlesGeometry.setAttribute(
+        "scale",
+        new THREE.BufferAttribute(scaleArray, 1)
+      );
 
       backgroundParticlesMaterial = new THREE.ShaderMaterial({
-        uniforms: { time: { value: 0 }, size: { value: settings.backgroundParticleSize }, color: { value: new THREE.Color(settings.backgroundParticleColor) } },
+        uniforms: {
+          time: { value: 0 },
+          size: { value: settings.backgroundParticleSize },
+          color: { value: new THREE.Color(settings.backgroundParticleColor) },
+        },
         vertexShader: `
           attribute float scale;
           uniform float time;
@@ -631,7 +900,10 @@ export default function SupernovaCanvas() {
         blending: THREE.AdditiveBlending,
       });
 
-      backgroundParticles = new THREE.Points(particlesGeometry, backgroundParticlesMaterial);
+      backgroundParticles = new THREE.Points(
+        particlesGeometry,
+        backgroundParticlesMaterial
+      );
       particleScene.add(backgroundParticles);
     }
 
@@ -645,17 +917,41 @@ export default function SupernovaCanvas() {
       settings.tintColor = theme.tintColor;
       settings.tintStrength = theme.tintStrength;
       settings.bloomStrength = theme.bloomStrength;
-      supernovaShader.uniforms.tintColor.value.set(theme.tintColor[0] / 255, theme.tintColor[1] / 255, theme.tintColor[2] / 255);
+      supernovaShader.uniforms.tintColor.value.set(
+        theme.tintColor[0] / 255,
+        theme.tintColor[1] / 255,
+        theme.tintColor[2] / 255
+      );
       supernovaShader.uniforms.tintStrength.value = theme.tintStrength;
-      supernovaShader.uniforms.baseColor.value.set(theme.baseColor[0], theme.baseColor[1], theme.baseColor[2]);
-      supernovaShader.uniforms.accentColor.value.set(theme.accentColor[0], theme.accentColor[1], theme.accentColor[2]);
-      supernovaShader.uniforms.edgeColor.value.set(theme.edgeColor[0], theme.edgeColor[1], theme.edgeColor[2]);
-      supernovaShader.uniforms.glowColor.value.set(theme.glowColor[0], theme.glowColor[1], theme.glowColor[2]);
+      supernovaShader.uniforms.baseColor.value.set(
+        theme.baseColor[0],
+        theme.baseColor[1],
+        theme.baseColor[2]
+      );
+      supernovaShader.uniforms.accentColor.value.set(
+        theme.accentColor[0],
+        theme.accentColor[1],
+        theme.accentColor[2]
+      );
+      supernovaShader.uniforms.edgeColor.value.set(
+        theme.edgeColor[0],
+        theme.edgeColor[1],
+        theme.edgeColor[2]
+      );
+      supernovaShader.uniforms.glowColor.value.set(
+        theme.glowColor[0],
+        theme.glowColor[1],
+        theme.glowColor[2]
+      );
       bloomPass.strength = settings.bloomStrength;
-      settings.particleColor = '#ffffff';
-      settings.backgroundParticleColor = '#666666';
-      if (particlesMaterial) particlesMaterial.uniforms.color.value.set(settings.particleColor);
-      if (backgroundParticlesMaterial) backgroundParticlesMaterial.uniforms.color.value.set(settings.backgroundParticleColor);
+      settings.particleColor = "#ffffff";
+      settings.backgroundParticleColor = "#666666";
+      if (particlesMaterial)
+        particlesMaterial.uniforms.color.value.set(settings.particleColor);
+      if (backgroundParticlesMaterial)
+        backgroundParticlesMaterial.uniforms.color.value.set(
+          settings.backgroundParticleColor
+        );
       createForegroundParticles();
       createBackgroundParticles();
     }
@@ -664,27 +960,30 @@ export default function SupernovaCanvas() {
 
     // Audio setup
     const audioElement = audioRef.current;
-    const audioToggle = document.getElementById('audio-toggle');
-    const playIcon = document.getElementById('play-icon');
-    const pauseIcon = document.getElementById('pause-icon');
-    const audioStatus = document.getElementById('audio-status');
+    const audioToggle = document.getElementById("audio-toggle");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+    const audioStatus = document.getElementById("audio-status");
 
     const handleAudioToggle = () => {
       if (audioElement.paused) {
-        audioElement.play().then(() => {
-          playIcon.style.display = 'none';
-          pauseIcon.style.display = 'block';
-          audioStatus.textContent = 'Pause';
-        }).catch((error) => console.error('Audio playback failed:', error));
+        audioElement
+          .play()
+          .then(() => {
+            playIcon.style.display = "none";
+            pauseIcon.style.display = "block";
+            audioStatus.textContent = "Pause";
+          })
+          .catch((error) => console.error("Audio playback failed:", error));
       } else {
         audioElement.pause();
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-        audioStatus.textContent = 'Play Music';
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+        audioStatus.textContent = "Play Music";
       }
     };
 
-    if (audioToggle) audioToggle.addEventListener('click', handleAudioToggle);
+    if (audioToggle) audioToggle.addEventListener("click", handleAudioToggle);
 
     // Animation loop
     let time = 0;
@@ -698,13 +997,17 @@ export default function SupernovaCanvas() {
           const angle = Math.atan2(mouse.y, mouse.x);
           const distance = mouseDistance;
           if (settings.autoRotation) {
-            targetValues.rotationAngle = angle * distance * Math.PI * settings.mouseInteractionStrength + time * settings.rotationSpeed;
+            targetValues.rotationAngle =
+              angle * distance * Math.PI * settings.mouseInteractionStrength +
+              time * settings.rotationSpeed;
           } else {
-            targetValues.rotationAngle = angle * distance * Math.PI * settings.mouseInteractionStrength;
+            targetValues.rotationAngle =
+              angle * distance * Math.PI * settings.mouseInteractionStrength;
           }
           if (settings.zoomWithMouse) {
             const zoomCurve = Math.pow(distance, 1.5);
-            const zoomFactor = 1.0 + zoomCurve * settings.zoomStrength * settings.maxZoom;
+            const zoomFactor =
+              1.0 + zoomCurve * settings.zoomStrength * settings.maxZoom;
             targetValues.zoom = settings.zoom * zoomFactor;
           } else {
             targetValues.zoom = settings.zoom;
@@ -715,8 +1018,17 @@ export default function SupernovaCanvas() {
           }
           targetValues.zoom = settings.zoom;
         }
-        currentValues.rotationAngle = lerp(currentValues.rotationAngle, targetValues.rotationAngle, settings.easingSpeed);
-        const newZoom = easeZoom(currentValues.zoom, targetValues.zoom, settings.zoomSmoothness, settings.zoomStability);
+        currentValues.rotationAngle = lerp(
+          currentValues.rotationAngle,
+          targetValues.rotationAngle,
+          settings.easingSpeed
+        );
+        const newZoom = easeZoom(
+          currentValues.zoom,
+          targetValues.zoom,
+          settings.zoomSmoothness,
+          settings.zoomStability
+        );
         updateZoomHistory(newZoom);
         currentValues.zoom = getSmoothedZoom();
       } else {
@@ -730,9 +1042,11 @@ export default function SupernovaCanvas() {
       supernovaShader.uniforms.iMouse.value.set(
         (mouse.x * window.innerWidth) / 2 + window.innerWidth / 2,
         (-mouse.y * window.innerHeight) / 2 + window.innerHeight / 2,
-        0, 0
+        0,
+        0
       );
-      supernovaShader.uniforms.rotationAngle.value = currentValues.rotationAngle;
+      supernovaShader.uniforms.rotationAngle.value =
+        currentValues.rotationAngle;
       supernovaShader.uniforms.zoom.value = currentValues.zoom;
 
       if (particlesMaterial) {
@@ -743,9 +1057,12 @@ export default function SupernovaCanvas() {
         const count = positions.length / 3;
         for (let i = 0; i < count; i++) {
           const i3 = i * 3;
-          positions[i3] += Math.sin(time * 0.1 + i * 0.1) * 0.01 * settings.particleSpeed;
-          positions[i3 + 1] += Math.cos(time * 0.1 + i * 0.2) * 0.01 * settings.particleSpeed;
-          positions[i3 + 2] += Math.sin(time * 0.1 + i * 0.3) * 0.01 * settings.particleSpeed;
+          positions[i3] +=
+            Math.sin(time * 0.1 + i * 0.1) * 0.01 * settings.particleSpeed;
+          positions[i3 + 1] +=
+            Math.cos(time * 0.1 + i * 0.2) * 0.01 * settings.particleSpeed;
+          positions[i3 + 2] +=
+            Math.sin(time * 0.1 + i * 0.3) * 0.01 * settings.particleSpeed;
         }
         particles.geometry.attributes.position.needsUpdate = true;
       }
@@ -780,16 +1097,19 @@ export default function SupernovaCanvas() {
       perspectiveCamera.updateProjectionMatrix();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
-      if (animationFrameIdRef.current) cancelAnimationFrame(animationFrameIdRef.current);
-      window.removeEventListener('resize', handleResize);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseout', handleMouseOut);
-      if (audioToggle) audioToggle.removeEventListener('click', handleAudioToggle);
-      if (rendererRef.current && container) container.removeChild(rendererRef.current.domElement);
+      if (animationFrameIdRef.current)
+        cancelAnimationFrame(animationFrameIdRef.current);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseout", handleMouseOut);
+      if (audioToggle)
+        audioToggle.removeEventListener("click", handleAudioToggle);
+      if (rendererRef.current && container)
+        container.removeChild(rendererRef.current.domElement);
       renderer.dispose();
       noiseTexture1.dispose();
       noiseTexture2.dispose();
@@ -803,7 +1123,9 @@ export default function SupernovaCanvas() {
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&display=swap");
 
-        *, *::after, *::before {
+        *,
+        *::after,
+        *::before {
           box-sizing: border-box;
           margin: 0;
           padding: 0;
@@ -831,13 +1153,14 @@ export default function SupernovaCanvas() {
         }
 
         body::before {
-          content: '';
+          content: "";
           position: fixed;
           top: -50%;
           left: -50%;
           width: 200%;
           height: 200%;
-          background: url('https://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+          background: url("https://assets.iceable.com/img/noise-transparent.png")
+            repeat 0 0;
           background-size: 300px 300px;
           animation: noise-animation 0.4s steps(5) infinite;
           opacity: 0.9;
@@ -846,17 +1169,39 @@ export default function SupernovaCanvas() {
         }
 
         @keyframes noise-animation {
-          0% { transform: translate(0, 0); }
-          10% { transform: translate(-2%, -2%); }
-          20% { transform: translate(-4%, 2%); }
-          30% { transform: translate(2%, -4%); }
-          40% { transform: translate(-2%, 4%); }
-          50% { transform: translate(4%, -2%); }
-          60% { transform: translate(3px, 0); }
-          70% { transform: translate(0, 3px); }
-          80% { transform: translate(-3px, 0); }
-          90% { transform: translate(2px, 2%); }
-          100% { transform: translate(0, 0); }
+          0% {
+            transform: translate(0, 0);
+          }
+          10% {
+            transform: translate(-2%, -2%);
+          }
+          20% {
+            transform: translate(-4%, 2%);
+          }
+          30% {
+            transform: translate(2%, -4%);
+          }
+          40% {
+            transform: translate(-2%, 4%);
+          }
+          50% {
+            transform: translate(4%, -2%);
+          }
+          60% {
+            transform: translate(3px, 0);
+          }
+          70% {
+            transform: translate(0, 3px);
+          }
+          80% {
+            transform: translate(-3px, 0);
+          }
+          90% {
+            transform: translate(2px, 2%);
+          }
+          100% {
+            transform: translate(0, 0);
+          }
         }
 
         .canvas-container {
@@ -1069,7 +1414,9 @@ export default function SupernovaCanvas() {
       <div className="center-content">
         <div className="caption">Websites That Work. Brands That Shine</div>
         <h1 className="main-text">
-          SAYA helps YOUR brand stand out online with sleek website design, smart SEO, and seamless user experience. New site or revamp — we build it to grow your business.
+          SAYA helps YOUR brand stand out online with sleek website design,
+          smart SEO, and seamless user experience. New site or revamp — we build
+          it to grow your business.
         </h1>
       </div>
       <div className="coordinates bottom-center">
@@ -1077,18 +1424,42 @@ export default function SupernovaCanvas() {
       </div>
       <div className="audio-controls">
         <button id="audio-toggle" className="audio-button">
-          <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            id="play-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'none' }}>
+          <svg
+            id="pause-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ display: "none" }}
+          >
             <rect x="6" y="4" width="4" height="16"></rect>
             <rect x="14" y="4" width="4" height="16"></rect>
           </svg>
         </button>
-        <span id="audio-status" className="audio-status">Play Music</span>
+        <span id="audio-status" className="audio-status">
+          Play Music
+        </span>
       </div>
       <audio id="background-music" loop ref={audioRef}>
-        <source src="https://dl.dropboxusercontent.com/scl/fi/kiioubd8rrkikem985ogn/the-shape-of-absence.mp3?rlkey=cy8jobnee3bocnlk1o9c2mjv8&dl=1" type="audio/mp3" />
+        <source
+          src="https://dl.dropboxusercontent.com/scl/fi/kiioubd8rrkikem985ogn/the-shape-of-absence.mp3?rlkey=cy8jobnee3bocnlk1o9c2mjv8&dl=1"
+          type="audio/mp3"
+        />
         Your browser does not support the audio element.
       </audio>
       <div className="profile-card">
@@ -1096,7 +1467,13 @@ export default function SupernovaCanvas() {
         <div className="profile-info">
           <p className="profile-name">SAYA</p>
           <p className="profile-twitter">
-            <a href="https://x.com/Sayadevteam" target="_blank" rel="noopener noreferrer">@Saya</a>
+            <a
+              href="https://x.com/Sayadevteam"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @Saya
+            </a>
           </p>
         </div>
       </div>

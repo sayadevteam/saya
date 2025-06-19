@@ -29,7 +29,7 @@ const OurWork = () => {
     },
     {
       img: "a3.jpg",
-      title: "vehiQL",
+      title: "VehiQL",
       url: "https://rydo-sooty.vercel.app/",
       rotation: 2,
       endY: -5.85,

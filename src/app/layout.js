@@ -1,8 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import Menu from "@/components/menu/menu";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Preloader from "@/components/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: "400"
+})
+
 export const metadata = {
   title: "SAYA",
   description: "Saya is a creative agency specializing in web design, branding, and digital marketing.",
@@ -24,24 +28,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=panchang@700&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} `}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Preloader />
-          <Menu />
-          {children}
-        </ThemeProvider>
+        {children}   
       </body>
     </html>
   );

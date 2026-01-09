@@ -159,7 +159,7 @@ export function AnimeNavBar({
               className="fixed top-0 right-0 h-full w-[280px] sm:w-[350px] bg-black/90 border-l border-white/10 z-[10001] shadow-2xl p-6 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center justify-center mb-8">
                 <span className="text-xl font-bold text-white tracking-wider">
                   MENU
                 </span>

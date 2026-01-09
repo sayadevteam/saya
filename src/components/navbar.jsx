@@ -30,11 +30,17 @@ const items = [
     href: "#",
     icon: Info,
   },
+  {
+    name: "Contact",
+    url: "/contact",
+    href: "#",
+    icon: Info,
+  },
 ]
 
 const Navbar = () => {
   return (
-    <div className="h-24 flex items-center justify-between px-10 pt-5">
+    <div className="h-24 flex items-center justify-between pt-5">
       {/* AnimeNavBar handles ALL alignment internally */}
       <AnimeNavBar 
         items={items} 

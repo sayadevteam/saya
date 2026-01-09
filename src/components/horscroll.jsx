@@ -1,7 +1,19 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { animate, scroll, spring } from 'motion';
-import { ReactLenis } from 'lenis/react';
+import { animate, scroll } from 'motion';
+
+const CARDS = [
+  { title: "What is SAYA?", desc: "We are architects of the modern web, bridging the gap between bold ideas and functional reality.", color: "from-orange-50 to-orange-100", accent: "text-orange-600", bg: "bg-orange-200" },
+  { title: "A Digital-First Agency.", desc: "A collective of developers and designers dedicated to pushing the boundaries of the web.", color: "from-blue-50 to-blue-100", accent: "text-blue-600", bg: "bg-blue-200" },
+  { title: "Driven by Innovation.", desc: "We don’t just follow trends; we analyze behavior to build websites that stay ahead of the curve.", color: "from-emerald-50 to-emerald-100", accent: "text-emerald-600", bg: "bg-emerald-200" },
+  { title: "Bespoke Development.", desc: "From complex SaaS to sleek corporate sites, we build custom solutions tailored to your goals.", color: "from-purple-50 to-purple-100", accent: "text-purple-600", bg: "bg-purple-200" },
+  { title: "User-Centric Design.", desc: "We create intuitive interfaces that reduce friction and turn visitors into loyal customers.", color: "from-pink-50 to-pink-100", accent: "text-pink-600", bg: "bg-pink-200" },
+  { title: "Performance First.", desc: "We optimize every millisecond. Our sites are lightning-fast, secure, and built to rank.", color: "from-indigo-50 to-indigo-100", accent: "text-indigo-600", bg: "bg-indigo-200" },
+  { title: "Scalable Architecture.", desc: "Using modern stacks like Next.js to ensure your platform grows with your ambition.", color: "from-teal-50 to-teal-100", accent: "text-teal-600", bg: "bg-teal-200" },
+  { title: "Your Tech Partner.", desc: "We view ourselves as an extension of your team, providing support long after launch.", color: "from-cyan-50 to-cyan-100", accent: "text-cyan-600", bg: "bg-cyan-200" },
+  { title: "Strategic Impact.", desc: "Transforming your vision into high-performing digital assets that drive real growth.", color: "from-red-50 to-red-100", accent: "text-red-600", bg: "bg-red-200" },
+  { title: "Ready to Build?", desc: "Your next digital breakthrough starts here. Let’s create something extraordinary together.", color: "from-yellow-50 to-yellow-100", accent: "text-yellow-600", bg: "bg-yellow-200" },
+];
 
 export function HorizontalScroll() {
   const containerRef = useRef(null);
@@ -11,7 +23,6 @@ export function HorizontalScroll() {
     const items = ulRef.current?.querySelectorAll('li');
     if (!ulRef.current || !items || !containerRef.current) return;
 
-    // 1. Calculate the total horizontal distance to travel
     const xTranslation = -(items.length - 1) * 100;
 
     const controls = animate(
@@ -20,96 +31,43 @@ export function HorizontalScroll() {
       { easing: "linear" }
     );
 
-    // 2. Link the animation to the vertical scroll of the containerRef
     scroll(controls, {
       target: containerRef.current,
       offset: ["start start", "end end"]
     });
 
-    // 3. Header animations
-    const segmentLength = 1 / items.length;
     items.forEach((item, i) => {
-      const header = item.querySelector('h2');
-      if (header) {
-        scroll(animate(header, { 
-          scale: [0.8, 1.1, 1],
-          opacity: [0, 1, 0.8],
-          y: [50, 0, -20]
+      const content = item.querySelector('.content-box');
+      if (content) {
+        scroll(animate(content, { 
+          scale: [0.9, 1, 0.9],
+          opacity: [0.5, 1, 0.5],
         }), {
           target: containerRef.current,
-          offset: [
-            `${i * segmentLength} start`, 
-            `${(i + 1) * segmentLength} end`
-          ],
+          offset: [`${(i / items.length)} start`, `${((i + 1) / items.length)} end`],
         });
       }
     });
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] ">
-      {/* This div stays fixed on screen while we scroll the 400vh height */}
-      <div className="h-screen mx-3 sticky top-40 p-4 rounded-t-[3rem] my-3 rounded-b-[3rem] overflow-hidden">
-        <ul ref={ulRef} className="flex h-[60vh] transition-transform will-change-transform">
-          {/* Slide 1 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-12 w-full max-w-5xl mt-10 h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">What is SAYA?</h2>
-              
-            </div>
-          </li>
-
-          {/* Slide 2 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">WORK</h2>
-              <div className="w-48 h-48 bg-blue-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-blue-600">02</div>
-            </div>
-          </li>
-
-          {/* Slide 3 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">VISION</h2>
-              <div className="w-48 h-48 bg-emerald-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-emerald-600">03</div>
-            </div>
-          </li>
-
-          {/* Slide 4 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">GROWTH</h2>
-              <div className="w-48 h-48 bg-purple-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-purple-600">04</div>
-            </div>
-          </li>
-
-          {/* Slide 5 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">CREATIVITY</h2>
-              <div className="w-48 h-48 bg-pink-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-pink-600">05</div>
-            </div>
-          </li>
-
-          {/* Slide 6 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">INNOVATION</h2>
-              <div className="w-48 h-48 bg-indigo-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-indigo-600">06</div>
-            </div>
-          </li>
-
-          {/* Slide 7 */}
-          <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-3xl p-12 w-full max-w-5xl h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">TRUST</h2>
-              <div className="w-48 h-48 bg-teal-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-teal-600">07</div>
-            </div>
-          </li>
+    <div ref={containerRef} className="relative h-[1000vh]">
+      <div className="h-screen sticky top-0 flex items-center overflow-hidden">
+        <ul ref={ulRef} className="flex will-change-transform">
+          {CARDS.map((card, idx) => (
+            <li key={idx} className="h-full w-screen flex-shrink-0 flex items-center justify-center px-10">
+              <div className={`content-box bg-gradient-to-br ${card.color} rounded-[3rem] p-16 w-full max-w-6xl h-[70vh] flex flex-col items-center justify-center shadow-2xl text-center`}>
+                <h2 className="text-6xl md:text-8xl font-black text-black mb-6 leading-tight">
+                  {card.title}
+                </h2>
+                <p className="text-xl md:text-2xl text-black max-w-2xl mb-10 font-medium">
+                  {card.desc}
+                </p>
+                
+              </div>
+            </li>
+          ))}
         </ul>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f9731612_1px,transparent_1px),linear-gradient(to_bottom,#f9731612_1px,transparent_1px)] bg-[size:54px_54px]" />
-                <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-yellow-200/20 blur-[100px] rounded-full" />
-                <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-200/20 blur-[100px] rounded-full" />
       </div>
     </div>
   );

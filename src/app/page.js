@@ -36,7 +36,7 @@ export default function Page() {
           <article>
             {/* HERO SECTION - UNTOUCHED */}
             <section className="h-screen w-full p-4 bg-[#fdfbf7]">
-              <div className="relative h-full w-full rounded-[3rem] bg-white border border-orange-300 overflow-hidden shadow-sm flex flex-col items-center justify-center">
+              <div className="relative h-full w-full -mt-20 rounded-[3rem] bg-white border border-orange-300 overflow-hidden shadow-sm flex flex-col items-center justify-center">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#f9731612_1px,transparent_1px),linear-gradient(to_bottom,#f9731612_1px,transparent_1px)] bg-[size:54px_54px]" />
                 <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-yellow-200/20 blur-[100px] rounded-full" />
                 <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-200/20 blur-[100px] rounded-full" />
@@ -128,62 +128,105 @@ export default function Page() {
             </section>
 
             {/* THIRD SECTION - STICKY ORANGE */}
-            <section className="h-screen mx-3 sticky top-24 p-4 bg-orange-500 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-30">
-              <div className="relative z-10 max-w-3xl">
-                <h1 className="text-6xl md:text-8xl font-extrabold text-white tracking-tighter">
-                  Built for <br />{" "}
-                  <span className="text-yellow-300 underline decoration-white/20">
-                    Growth.
-                  </span>
+            {/* STAGE 1: IDEATION (Orange) */}
+            <section className="h-screen mx-3 sticky top-20 p-4 bg-orange-600 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-10">
+              <div className="relative z-10 max-w-4xl px-6">
+                <span className="text-orange-200 font-bold tracking-widest uppercase text-sm mb-4 block">
+                  Step 01 — Discovery
+                </span>
+                <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter mb-8">
+                  Deep Dive & <span className="text-yellow-300">Strategy.</span>
                 </h1>
-                <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {["Ideate", "Design", "Code", "Scale"].map((step, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white font-bold text-lg"
-                    >
-                      {step}
-                    </div>
-                  ))}
-                </div>
+                <p className="text-orange-50 text-xl md:text-2xl font-medium leading-relaxed">
+                  We start by dissecting your business goals, target audience,
+                  and technical requirements to build a solid roadmap.
+                </p>
               </div>
             </section>
 
-            {/* FOURTH SECTION - STICKY YELLOW */}
-            <section className="h-screen mx-3 sticky top-32 p-4 bg-yellow-400 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] z-40">
+            {/* STAGE 2: ARCHITECTURE (Deep Orange/Red) */}
+            <section className="h-screen mx-3 sticky top-24 p-4 bg-orange-700 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-20">
+              <div className="relative z-10 max-w-4xl px-6">
+                <span className="text-orange-200 font-bold tracking-widest uppercase text-sm mb-4 block">
+                  Step 02 — Architecture
+                </span>
+                <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter mb-8">
+                  Blueprinting the{" "}
+                  <span className="text-yellow-300">Experience.</span>
+                </h1>
+                <p className="text-orange-50 text-xl md:text-2xl font-medium leading-relaxed">
+                  We map out the user journey and information architecture,
+                  ensuring every interaction is intentional and frictionless.
+                </p>
+              </div>
+            </section>
+
+            {/* STAGE 3: DESIGN (Purple/Indigo) */}
+            <section className="h-screen mx-3 sticky top-28 p-4 bg-indigo-600 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-30">
+              <div className="relative z-10 max-w-4xl px-6">
+                <span className="text-indigo-200 font-bold tracking-widest uppercase text-sm mb-4 block">
+                  Step 03 — Design
+                </span>
+                <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter mb-8">
+                  Visual Identity <br />&{" "}
+                  <span className="text-emerald-300">UI.</span>
+                </h1>
+                <p className="text-indigo-50 text-xl md:text-2xl font-medium leading-relaxed">
+                  Our designers craft a high-fidelity visual language that
+                  aligns with your brand while prioritizing modern usability
+                  standards.
+                </p>
+              </div>
+            </section>
+
+            {/* STAGE 4: DEVELOPMENT (Slate/Black) */}
+            <section className="h-screen mx-3 sticky top-32 p-4 bg-zinc-900 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] z-40">
+              <div className="relative z-10 max-w-4xl px-6">
+                <span className="text-zinc-500 font-bold tracking-widest uppercase text-sm mb-4 block">
+                  Step 04 — Engineering
+                </span>
+                <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter mb-8">
+                  Built for <span className="text-orange-500">Scale.</span>
+                </h1>
+                <p className="text-zinc-400 text-xl md:text-2xl font-medium leading-relaxed">
+                  We translate designs into clean, scalable code using modern
+                  stacks like Next.js, ensuring a robust and future-proof
+                  foundation.
+                </p>
+              </div>
+            </section>
+
+            {/* STAGE 5: TRUST (Yellow) */}
+            <section className="h-screen mx-3 sticky top-36 p-4 bg-yellow-400 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] z-50">
               <div className="relative z-10">
-                <h1 className="text-6xl md:text-8xl font-extrabold text-yellow-950 tracking-tighter">
+                <h1 className="text-6xl md:text-8xl font-extrabold text-yellow-950 tracking-tighter mb-8">
                   Trusted By <br /> The{" "}
                   <span className="text-white">Bold.</span>
                 </h1>
-                <div className="mt-12 flex justify-center gap-8 opacity-40">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="h-8 w-24 bg-yellow-950 rounded-full"
-                    />
-                  ))}
-                </div>
+                <p className="text-yellow-900 text-xl font-bold max-w-2xl mx-auto opacity-80 mb-12">
+                  From ambitious startups to industry leaders, we build the
+                  tools that define the next generation of the web.
+                </p>
               </div>
             </section>
 
-            {/* FINAL SECTION - CONTACT (FIXED BLEEDING) */}
-            <section className="relative w-full p-4 bg-[#fdfbf7] z-[50]">
+            {/* FINAL SECTION - CONTACT */}
+            <section className="relative w-full p-4 bg-[#fdfbf7] z-[60]">
               <div className="relative min-h-screen w-full rounded-[3rem] bg-white overflow-hidden flex flex-col items-center justify-center text-center px-6">
                 <div className="absolute inset-0 bg-[#fdfbf7] -z-10" />
                 <div className="relative z-10 max-w-2xl">
-                  <h1 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter">
-                    Let's Build <br />{" "}
+                  <h1 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-none">
+                    Let's Build <br />
                     <span className="text-orange-500">Legacy.</span>
                   </h1>
-                  <p className="text-gray-500 mt-8 text-xl font-medium">
-                    Ready to transform your brand into a digital leader? Let's
-                    start the conversation.
+                  <p className="text-gray-500 mt-8 text-xl font-medium leading-relaxed">
+                    Ready to transform your brand into a digital leader? <br />
+                    Let's bridge the gap between your vision and reality.
                   </p>
-                  <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="mt-10">
                     <Link href="/contact">
-                      <button className="bg-black text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-orange-600 transition-all cursor-pointer">
-                        Get In Touch
+                      <button className="bg-black text-white px-12 py-6 rounded-full font-bold text-xl shadow-2xl hover:bg-orange-600 transition-all transform hover:scale-105">
+                        Start the Conversation
                       </button>
                     </Link>
                   </div>

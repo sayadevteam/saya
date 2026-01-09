@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
+        <link href="https://api.fontshare.com/v2/css?f[]=rosaline@400&display=swap" rel="stylesheet"></link>
       </head>
       <body
         className={poppins.variable}

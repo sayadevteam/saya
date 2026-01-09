@@ -43,7 +43,7 @@ export function AnimeNavBar({
         {/* Logo */}
         <div className="flex items-center">
           <img
-            src="/black-logo.png"
+            src="/saya.png"
             alt="Logo"
             width={100}
             draggable={false}

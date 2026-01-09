@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactLenis } from "lenis/react";
 import ClipPathImage from "@/components/svg-bg/svg1";
+import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
+import { Skiper54 } from "@/components/ui/skiper-ui/skiper54";
+import { HorizontalScroll } from "@/components/horscroll";
 
 const features = [
   {
@@ -120,7 +123,7 @@ export default function Page() {
                   <h1 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-[0.85]">
                     Websites <span className="text-orange-500">that work</span>
                     <br />
-                    <span className="relative inline-block text-gray-400">
+                    <span className="relative font-rosaline inline-block text-gray-400">
                       Brands that shine
                       <motion.div
                         initial={{ width: 0 }}
@@ -148,39 +151,12 @@ export default function Page() {
             </section>
 
             {/* DESCRIPTION SECTION - BENTO GRID CONTENT */}
-            <section className="h-screen mx-3 sticky top-30 p-10 bg-white overflow-hidden rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)]">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-50"></div>
 
-              <div className="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center">
-                <div className="mt-10 mb-8">
-                  <h2 className="text-4xl md:text-5xl font-extrabold text-black tracking-tight">
-                    Know about <span className="text-orange-500">US.</span>
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-                  {features.map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      whileHover={{ y: -8 }}
-                      className={`p-8 lg:p-10 rounded-[2.5rem] border border-black/5 shadow-sm flex flex-col justify-between min-h-[220px] lg:min-h-[280px] ${item.size} ${item.bg} ${item.text}`}
-                    >
-                      <div className="text-4xl">{item.icon}</div>
-                      <div>
-                        <h3 className="text-2xl font-bold mb-2 lg:mb-3 leading-tight">
-                          {item.title}
-                        </h3>
-                        <p className="opacity-90 text-sm font-medium leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+            <section className=" w-full p-4 bg-[#fdfbf7]">
+              <div className="sticky">
+                <ReactLenis root>
+                  <HorizontalScroll />
+                </ReactLenis>
               </div>
             </section>
 
@@ -262,40 +238,19 @@ export default function Page() {
                 <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-yellow-200/20 blur-[100px] rounded-full" />
                 <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-200/20 blur-[100px] rounded-full" />
 
-                <div className="relative flex-col md:flex-row items-center justify-center font-semibold mt-24 px-6 gap-8">
-                  {/* The Heading */}
-                  <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-black ">
-                    What we do at <span className="text-orange-500">SAYA?</span>
-                  </h1>
-                  <div className="grid grid-cols-4">
-                    {/* The Overlapping Container */}
-                    <div className="relative w-60 h-60 ml-0 md:ml-10 mt-20">
-                      {/* Background Component (Stays constant size) */}
-                      <div className="absolute inset-0 z-0">
-                        <ClipPathImage />
+                <div className="flex flex-col lg:flex-row items-start justify-start mt-16 px-8 gap-12 h-full">
+                  {/* Left-aligned Heading */}
+                  <div className="flex-1 min-w-0 pt-8">
+                    <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-black leading-tight max-w-lg">
+                      What we do at{" "}
+                      <span className="text-orange-500 ">SAYA?</span>
+                      <div className=" w-full">
+                        <Skiper19 />
                       </div>
-
-                      {/* The Character (Scaled up to be bigger than the shape) */}
-                      <div className="absolute inset-0 z-10 flex items-center justify-center">
-                        <motion.img
-                          initial={{ y: 40, opacity: 0, scale: 1.2 }}
-                          whileInView={{ y: 0, opacity: 1, scale: 1.5 }} // scale: 1.5 makes it 50% larger than the ClipPath
-                          transition={{
-                            duration: 0.8,
-                            delay: 0.2,
-                            ease: [0.16, 1, 0.3, 1], // Smooth out-expo easing
-                          }}
-                          src="phase1new.png"
-                          alt="Phase 1 Character"
-                          // transform-origin-bottom ensures it grows upward/outward from the base
-                          className="w-full h-full object-contain pointer-events-none origin-bottom"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      ahvfahsfha
-                    </div>
+                    </h1>
                   </div>
+
+                  {/* Path Animation */}
                 </div>
               </div>
             </section>

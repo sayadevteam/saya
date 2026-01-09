@@ -237,3 +237,8 @@
   font-family: 'Switzer';
   font-weight: 500;
 }
+
+
+@theme{
+  --font-rosaline: 'Rosaline', cursive;;
+}

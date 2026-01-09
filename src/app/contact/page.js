@@ -340,61 +340,9 @@ export default function Home() {
           </div>
         </div>
         <div className={orbitron.className}>
-      <motion.div
-        ref={footerRef}
-        className="bg-black text-white py-16 px-4 sm:px-6 lg:px-8"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">SAYA</h3>
-            <p className="text-gray-400">
-              Building digital experiences that matter.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">Contact</h3>
-            <div className="flex items-center gap-3">
-              <Mail />
-              <span className="text-gray-300 hover:text-white transition-colors">
-                saya.devteam@gmail.com
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <PhoneCall />
-              <span className="text-gray-300 hover:text-white transition-colors">
-                +91 9136747743
-              </span>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">Connect</h3>
-            <div className="flex gap-4">
-              <motion.div whileHover={{ scale: 1.1 }} className="inline-block">
-                <Link href="https://www.instagram.com/sayadevteam/">
-                  <Instagram className="w-6 h-6 hover:text-pink-600 transition-colors" />
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }} className="inline-block">
-                <Link href="https://x.com/Sayadevteam">
-                  <RiTwitterXLine className="w-6 h-6 hover:text-blue-300 transition-colors" />
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Saya Dev Team. All rights reserved.</p>
-        </div>
-      </motion.div>
+      
       </div>
       </div>
-
-      {/* Modern Footer */}
-
       <Toaster />
     </div>
 

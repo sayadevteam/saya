@@ -49,13 +49,13 @@ export function HorizontalScroll() {
   return (
     <div ref={containerRef} className="relative h-[400vh] ">
       {/* This div stays fixed on screen while we scroll the 400vh height */}
-      <div className="h-screen mx-3 sticky top-40 p-4 rounded-t-[3rem] my-3 rounded-b-[3rem]  overflow-hidden">
+      <div className="h-screen mx-3 sticky top-40 p-4 rounded-t-[3rem] my-3 rounded-b-[3rem] overflow-hidden">
         <ul ref={ulRef} className="flex h-[60vh] transition-transform will-change-transform">
           {/* Slide 1 */}
           <li className="h-full w-screen flex-shrink-0 flex flex-col justify-center items-center px-10">
             <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-12 w-full max-w-5xl mt-10 h-full flex flex-col items-center justify-center shadow-2xl">
-              <h2 className="text-7xl font-black text-black mb-8">PASSION</h2>
-              <div className="w-48 h-48 bg-orange-200 rounded-2xl flex items-center justify-center text-4xl font-bold text-orange-600">01</div>
+              <h2 className="text-7xl font-black text-black mb-8">What is SAYA?</h2>
+              
             </div>
           </li>
 

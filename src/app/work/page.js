@@ -1,169 +1,211 @@
 "use client";
-import React from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const OurWork = () => {
-  const cards = [
+  const images = [
     {
-      img: "/image.png",
-      title: "OJUS",
-      url: "https://ojus-culturals.vercel.app/",
-      rotation: -4,
-      endY: 0,
-      duration: "6s",
+      src: "/image.png",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
     },
     {
-      img: "/a2.jpg",
-      title: "PassVault",
-      url: "https://pass-vault-psi.vercel.app/",
-      rotation: 3,
-      endY: -1.025,
-      duration: "6s",
+      src: "/image.png",
+      alt: "Illustrations by ©AarzooAly",
+      code: "# 23",
     },
     {
-      img: "/s1.jpg",
-      title: "MaiaEvents",
-      url: "https://maiaevents.in/",
-      rotation: -1,
-      endY: -2.25,
-      duration: "6.5s",
+      src: "/image.png",
+      alt: "Illustrations by ©AarzooAly",
+      code: "# 23",
     },
     {
-      img: "a3.jpg",
-      title: "vehiQL",
-      url: "https://rydo-sooty.vercel.app/",
-      rotation: 2,
-      endY: -5.85,
-      duration: "7.25s",
+      src: "/image.png",
+      alt: "Illustrations by ©AarzooAly",
+      code: "# 23",
     },
     {
-      img: "/y1.jpg",
-      title: "TravelHub",
-      url: "https://travel-lovat-theta.vercel.app/",
-      rotation: -5,
-      endY: -3.75,
-      duration: "6.75s",
+      src: "/image.png",
+      alt: "Illustrations by ©AarzooAly",
+      code: "# 23",
     },
     {
-      img: "/y2.jpg",
-      title: "Growth Chronicles",
-      url: "https://growth-chronicles.vercel.app/",
-      rotation: -2,
-      endY: -4.82,
-      duration: "7s",
-    },
-    {
-      img: "a1.jpg",
-      title: "UrbanNest",
-      url: "https://urban-nest-6esd.vercel.app/",
-      rotation: 2,
-      endY: -5.85,
-      duration: "7.25s",
+      src: "/image.png",
+      alt: "Illustrations by ©AarzooAly",
+      code: "# 23",
     },
   ];
 
   return (
-    <section
-      className="w-full min-h-screen px-10 py-20 flex flex-col items-center justify-center bg-[#BBB8B2]"
-      style={{
-        // background:
-        //   'linear-gradient(50deg, oklch(50% 0.0075 70), oklch(90% 0.0075 70))',
-        backgroundAttachment: "fixed",
-      }}
-    >
-      <h2 className="text-4xl font-extrabold uppercase text-white mb-12 mt-20 text-center">
-        Our Work
-      </h2>
+    <section className="w-screen min-h-screen flex flex-col bg-[#f5f4f3] overflow-hidden">
+      {/* Top - Title */}
+      <div className="w-full h-[20vh] flex items-start justify-start p-6 sm:p-12 pt-20 sm:pt-16">
+  <h2 className="text-7xl sm:text-[15vh] font-extrabold text-black font-regular uppercase tracking-wider ">
+    Our Work
+  </h2>
+</div>
 
-      <div
-        className="flex flex-wrap gap-10 items-center justify-center w-full h-full group"
-        style={{
-          "--bg": "25% 0.0075 70",
-          "--pink": "77.75% 0.1003 350.51",
-          "--gold": "84.16% 0.1169 71.19",
-          "--mint": "84.12% 0.1334 165.28",
-          "--mobile-w": "360px",
-          "--mobile-h": "540px",
-          "--outline-w": "9px",
-          "--preview-bg": "#fff",
-        }}
-      >
-        {cards.map((card, i) => (
-          <a
-            key={i}
-            href={card.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 no-underline"
-          >
-            <article
-              tabIndex={0}
-              className="relative border-[--outline-w] border-transparent rounded-4xl outline-[--outline-w] outline-[--preview-bg] transition-all duration-300 ease-in-out cursor-pointer"
-              style={{
-                backgroundImage: `url(${card.img})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundAttachment: "fixed",
-                backgroundPositionY: 0,
-                width: "var(--mobile-w)",
-                height: "var(--mobile-h)",
-                minWidth: "var(--mobile-w)",
-                minHeight: "var(--mobile-h)",
-                maxWidth: "var(--mobile-w)",
-                maxHeight: "var(--mobile-h)",
-                boxShadow: `0 0 24px oklch(var(--bg))`,
-                filter: "grayscale(100%) sepia(5%)",
-                mixBlendMode: "multiply",
-                opacity: 0.69,
-                transform: `scale(0.85) rotate(${card.rotation}deg)`,
-                animation: `bg-scroll-${i} ${card.duration} ease-out forwards`,
-                zIndex: 1,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 200px oklch(var(--gold))`;
-                e.currentTarget.style.borderColor = "oklch(var(--gold))";
-                e.currentTarget.style.mixBlendMode = "initial";
-                e.currentTarget.style.filter = "none";
-                e.currentTarget.style.opacity = "1";
-                e.currentTarget.style.transform = `scale(1) rotate(0deg)`;
-                e.currentTarget.style.zIndex = 6;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 24px oklch(var(--bg))`;
-                e.currentTarget.style.borderColor = "transparent";
-                e.currentTarget.style.mixBlendMode = "multiply";
-                e.currentTarget.style.filter = "grayscale(100%) sepia(5%)";
-                e.currentTarget.style.opacity = "0.69";
-                e.currentTarget.style.transform = `scale(0.85) rotate(${card.rotation}deg)`;
-                e.currentTarget.style.zIndex = 1;
-              }}
-            />
-            <p
-              className="text-[#010101] text-xl text-center"
-              style={{
-                transform: `rotate(${card.rotation}deg)`,
-              }}
-            >
-              {card.title}
-            </p>
-          </a>
-        ))}
+      
+      {/* Bottom - Responsive component */}
+      <div className="w-full overflow-hidden bg-[#f5f4f3]">
+        <HoverExpand_001 
+          images={images} 
+          isMobile={false}
+          className="hidden lg:block "
+        />
+        <HoverExpand_002 
+          images={images} 
+          className="lg:hidden block"
+        />
       </div>
-
-      {/* Dynamic keyframes per card */}
-      <style jsx>{`
-        ${cards
-          .map((card, i) => {
-            return `
-              @keyframes bg-scroll-${i} {
-                to {
-                  background-position-y: ${card.endY * 540}px;
-                }
-              }
-            `;
-          })
-          .join("\n")}
-      `}</style>
     </section>
+  );
+};
+
+// Desktop: Horizontal (existing)
+const HoverExpand_001 = ({
+  images,
+  className,
+}) => {
+  const [activeImage, setActiveImage] = useState(1);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{
+        duration: 0.3,
+        delay: 0.5,
+      }}
+      className={cn("relative w-full h-[70vh] p-10", className)}
+    >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="w-full h-full flex items-start justify-start"
+      >
+        <div className="flex w-full max-w-7xl items-center justify-center gap-3">
+          {images.map((image, index) => (
+            <motion.div
+              key={index}
+              className="relative cursor-pointer overflow-hidden rounded-3xl"
+              initial={{ width: "3.5rem", height: "24rem" }}
+              animate={{
+                width: activeImage === index ? "32rem" : "7rem",
+                height: activeImage === index ? "32rem" : "32rem",
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              onClick={() => setActiveImage(index)}
+              onHoverStart={() => setActiveImage(index)}
+            >
+              <AnimatePresence>
+                {activeImage === index && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute h-full w-full bg-gradient-to-t from-black/40 to-transparent"
+                  />
+                )}
+              </AnimatePresence>
+              <AnimatePresence>
+                {activeImage === index && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute flex h-full w-full flex-col items-end justify-end p-8"
+                  >
+                    <p className="text-left text-base text-white/50">
+                      {image.code}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <img
+                src={image.src}
+                className="size-full object-cover"
+                alt={image.alt}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Mobile: Vertical (HoverExpand_002 adapted)
+const HoverExpand_002 = ({
+  images,
+  className,
+}) => {
+  const [activeImage, setActiveImage] = useState(1);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{
+        duration: 0.3,
+        delay: 0.5,
+      }}
+      className={cn("relative w-full h-screen px-5 py-8", className)}
+    >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="w-full h-full flex flex-col items-center justify-center gap-4"
+      >
+        {images.map((image, index) => (
+          <motion.div
+            key={index}
+            className="group relative cursor-pointer overflow-hidden rounded-3xl w-full max-w-md"
+            initial={{ height: "3rem", width: "100%" }}
+            animate={{
+              height: activeImage === index ? "70vh" : "3rem",
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            onClick={() => setActiveImage(index)}
+            onHoverStart={() => setActiveImage(index)}
+          >
+            <AnimatePresence>
+              {activeImage === index && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute h-full w-full bg-gradient-to-t from-black/50 to-transparent"
+                />
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {activeImage === index && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className="absolute flex h-full w-full flex-col items-end justify-end px-6 pb-6"
+                >
+                  <p className="text-left text-sm text-white/50">
+                    {images[index].code}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <img
+              src={image.src}
+              className="size-full object-cover w-full h-full"
+              alt={image.alt}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 

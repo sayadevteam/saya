@@ -240,5 +240,6 @@
 
 
 @theme{
-  --font-rosaline: 'Rosaline', cursive;;
+  --font-rosaline: 'Rosaline', cursive;
+  --font-regular: 'Bebas Neue', sans-serif;
 }

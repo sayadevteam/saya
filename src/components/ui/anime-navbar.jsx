@@ -36,16 +36,16 @@ export function AnimeNavBar({
     <div className="fixed top-5 left-0 right-0 z-[9999]">
       <div
         className={cn(
-          "mx-10 grid grid-cols-[auto_1fr_auto] items-center",
+          "mx-10 grid grid-cols-3 items-center",
           className
         )}
       >
         {/* Logo */}
         <div className="flex items-center">
           <img
-            src="/saya.png"
+            src="/new-logo.png"
             alt="Logo"
-            width={100}
+            width={150}
             draggable={false}
           />
         </div>
@@ -120,12 +120,7 @@ export function AnimeNavBar({
           })}
         </motion.div>
 
-        {/* CTA */}
-        <div className="flex justify-end">
-          <Button variant="outline" className="cursor-pointer">
-            Sign In
-          </Button>
-        </div>
+        
       </div>
     </div>
   );

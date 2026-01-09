@@ -30,12 +30,6 @@ const items = [
     href: "#",
     icon: Info,
   },
-  {
-    name: "Plans",
-    url: "#",
-    href: "#",
-    icon: Info,
-  },
 ]
 
 const Navbar = () => {

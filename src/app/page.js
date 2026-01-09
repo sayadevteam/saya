@@ -18,9 +18,15 @@ import {
   AccordionPanel,
 } from '@/components/uilayouts/accordion';
 import { Plus } from 'lucide-react';
+import Footer from "@/components/footer";
+import FAQSection from "@/components/accordion-05";
+
 
 export default function Page() {
   return (
+
+
+    
     <ReactLenis root>
       <div className="bg-[#fdfbf7] font-['Switzer']">
         <link
@@ -213,12 +219,10 @@ export default function Page() {
               </div>
             </section>
 
-            <section className="relative w-full p-4 bg-[#fdfbf7] z-[70]">
-  <div className="relative min-h-screen w-full rounded-[3rem] bg-white border border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
+            <section className="relative w-full p-4 bg-white z-[70]">
+  <div className="relative min-h-screen w-full rounded-t-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
     {/* Background Textures */}
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,#f9731612_1px,transparent_1px),linear-gradient(to_bottom,#f9731612_1px,transparent_1px)] bg-[size:54px_54px] -z-10" />
-    <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-yellow-200/20 blur-[100px] rounded-full -z-10" />
-    <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-200/20 blur-[100px] rounded-full -z-10" />
+
 
     {/* Header Section */}
     <div className="relative z-10 text-center mb-20">
@@ -237,50 +241,18 @@ export default function Page() {
 
     {/* Accordion Container */}
     <div className="w-full max-w-4xl relative z-10">
-      <Accordion 
-        defaultValue={["item-1"]} 
-        className="space-y-4"
-      >
-        {[
-          {
-            id: "item-1",
-            q: "What is a UI component?",
-            a: "A UI (User Interface) component is a modular, reusable element that serves a specific function within a graphical user interface. Examples include buttons, input fields, dropdown menus, sliders, and checkboxes."
-          },
-          {
-            id: "item-2",
-            q: "Why are UI components important?",
-            a: "UI components promote consistency, efficiency, and scalability in software development. They allow developers to reuse code and maintain a consistent look and feel across an application."
-          },
-          {
-            id: "item-3",
-            q: "Key characteristics of UI components?",
-            a: "Well-designed UI components should be modular, customizable, and accessible. They should have clear functionality and be easily styled to match the overall design language."
-          }
-        ].map((item) => (
-          <AccordionItem 
-            key={item.id} 
-            value={item.id} 
-            className="group border border-orange-100 bg-white backdrop-blur-sm rounded-3xl overflow-hidden px-6 py-2 transition-all hover:border-orange-300 data-[state=open]:bg-orange-50/30 data-[state=open]:border-orange-200 hover:bg-white"
-          >
-            <AccordionHeader 
-              customIcon 
-              className="text-xl md:text-2xl font-bold py-6 text-black tracking-tight flex justify-between items-center w-full"
-            >
-              {item.q}
-              <div className="bg-orange-100 group-data-[state=open]:bg-orange-500 group-data-[state=open]:text-white p-2 rounded-full transition-colors">
-                <Plus className="w-5 h-5 group-data-[state=open]:rotate-45 transition-transform duration-300" />
-              </div>
-            </AccordionHeader>
-            <AccordionPanel className="pb-8 text-gray-600 text-lg leading-relaxed font-medium">
-              {item.a}
-            </AccordionPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
+<FAQSection/>
     </div>
   </div>
 </section>
+
+
+                   <section className="relative w-full p-4 bg-white z-[70] overflow-hidden">
+                    
+
+
+    <Footer/>
+    </section>
           </article>
         </main>
       </div>

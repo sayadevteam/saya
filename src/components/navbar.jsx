@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react" // Import React
+import * as React from "react"
 import { Home, FileText, CreditCard, Info } from "lucide-react"
 import { AnimeNavBar } from "@/components/ui/anime-navbar"
 import { Button } from "./ui/button"
@@ -34,8 +34,12 @@ const items = [
 
 const Navbar = () => {
   return (
-    <div>
-        <AnimeNavBar items={items} defaultActive="Home" />
+    <div className="h-24 flex items-center justify-between px-10 pt-5">
+      {/* AnimeNavBar handles ALL alignment internally */}
+      <AnimeNavBar 
+        items={items} 
+        defaultActive="Home" 
+      />
     </div>
   )
 }

@@ -16,17 +16,13 @@ import {
   AccordionHeader,
   AccordionItem,
   AccordionPanel,
-} from '@/components/uilayouts/accordion';
-import { Plus } from 'lucide-react';
+} from "@/components/uilayouts/accordion";
+import { Plus } from "lucide-react";
 import Footer from "@/components/footer";
 import FAQSection from "@/components/accordion-05";
 
-
 export default function Page() {
   return (
-
-
-    
     <ReactLenis root>
       <div className="bg-[#fdfbf7] font-['Switzer']">
         <link
@@ -186,9 +182,9 @@ export default function Page() {
                   </p>
                   <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/contact">
-                    <button className="bg-black text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-orange-600 transition-all cursor-pointer">
-                      Get In Touch
-                    </button>
+                      <button className="bg-black text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-orange-600 transition-all cursor-pointer">
+                        Get In Touch
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -220,39 +216,35 @@ export default function Page() {
             </section>
 
             <section className="relative w-full p-4 bg-white z-[70]">
-  <div className="relative min-h-screen w-full rounded-t-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
-    {/* Background Textures */}
+              <div className="relative min-h-screen w-full rounded-t-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
+                {/* Background Textures */}
 
+                {/* Header Section */}
+                <div className="relative z-10 text-center mb-20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-orange-50 border border-orange-100">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                    <span className="text-[10px] font-bold tracking-wider text-orange-700 uppercase">
+                      Common Questions
+                    </span>
+                  </div>
 
-    {/* Header Section */}
-    <div className="relative z-10 text-center mb-20">
-      <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-orange-50 border border-orange-100">
-        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-        <span className="text-[10px] font-bold tracking-wider text-orange-700 uppercase">
-          Common Questions
-        </span>
-      </div>
+                  <h2 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-[0.85]">
+                    Got <span className="text-orange-500">questions?</span>{" "}
+                    <br />
+                    We have answers.
+                  </h2>
+                </div>
 
-      <h2 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-[0.85]">
-        Got <span className="text-orange-500">questions?</span> <br />
-        We have answers.
-      </h2>
-    </div>
+                {/* Accordion Container */}
+                <div className="w-full max-w-4xl relative z-10">
+                  <FAQSection />
+                </div>
+              </div>
+            </section>
 
-    {/* Accordion Container */}
-    <div className="w-full max-w-4xl relative z-10">
-<FAQSection/>
-    </div>
-  </div>
-</section>
-
-
-                   <section className="relative w-full p-4 bg-white z-[70] overflow-hidden">
-                    
-
-
-    <Footer/>
-    </section>
+            <section className="relative w-full p-4 bg-white z-[70] overflow-hidden">
+              <Footer />
+            </section>
           </article>
         </main>
       </div>

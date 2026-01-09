@@ -27,22 +27,8 @@ const faqItems = [
 export default function FAQSection() {
   return (
     <section className="relative w-full p-4 bg-white z-[70]">
-      <div className="relative min-h-screen w-full rounded-t-[3rem] bg-white border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
+      <div className="relative w-full rounded-t-[3rem] bg-white overflow-hidden flex items-center">
         
-        {/* Header Section */}
-        <div className="relative z-10 text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-orange-50 border border-orange-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-wider text-orange-700 uppercase">
-              Common Questions
-            </span>
-          </div>
-
-          <h2 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-[0.85]">
-            Got <span className="text-orange-500">questions?</span> <br />
-            We have answers.
-          </h2>
-        </div>
 
         {/* Accordion Container */}
         <div className="w-full max-w-4xl relative z-10">

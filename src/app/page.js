@@ -110,7 +110,7 @@ export default function Page() {
                   </p>
 
                   <div className="mt-12 flex justify-center">
-                    <Link href="/our-work">
+                    <Link href="/work">
                       <div className="hover:scale-105 transition-transform duration-300">
                         <ButtonCreativeTop />
                       </div>

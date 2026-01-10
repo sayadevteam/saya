@@ -1,34 +1,28 @@
 'use client';
-import { Orbitron } from "next/font/google";
+
+import { Poppins } from "next/font/google";
 import { useRef, useEffect, useState } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import emailjs from '@emailjs/browser';
 import { motion } from "framer-motion";
-import { Instagram, Github, Mail, PhoneCall } from "lucide-react";
-import Link from 'next/link';
-import { RiTwitterXLine } from "react-icons/ri";
+import Navbar from "@/components/navbar";
+import Image from "next/image";
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
-import { ShaderGradient, ShaderGradientCanvas } from '@shadergradient/react';
+import Footer from "@/components/footer";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-const orbitron = Orbitron({subsets:["latin"]})
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
 
-export default function Home() {
-  const wrapperRef = useRef(null);
-  const contentRef = useRef(null);
-  const containerRef = useRef(null);
-  const boxRef = useRef(null);
-  const imageRef = useRef(null);
-  const contactRef = useRef(null);
-  const formContainerRef = useRef(null);
+export default function Contact() {
   const formRef = useRef(null);
-  const largeTextRef = useRef(null);
-  const footerRef = useRef(null);
-  const [errors, setErrors] = useState({ name: false, email: false, message: false });
+
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
 
   useEffect(() => {
     // Initialize EmailJS with the public key (user ID)
@@ -40,14 +34,15 @@ export default function Home() {
     }
   }, []);
 
+  // Basic email format validation
   const validateForm = () => {
     const form = formRef.current;
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const message = form.message.value.trim();
 
-    // Basic email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     const newErrors = {
       name: !name,
       email: !email || !emailRegex.test(email),
@@ -55,7 +50,6 @@ export default function Home() {
     };
 
     setErrors(newErrors);
-
     return !newErrors.name && !newErrors.email && !newErrors.message;
   };
 
@@ -92,259 +86,161 @@ export default function Home() {
       );
   };
 
-  useGSAP(() => {
-    const smoother = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 1.5,
-      effects: true,
-    });
-
-    gsap.fromTo(
-      imageRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-
-    gsap.fromTo(
-      boxRef.current,
-      { x: 0 },
-      {
-        x: 277,
-        duration: 2,
-        ease: 'power2.inOut',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: contactRef.current,
-        start: 'top 90%',
-        toggleActions: 'play none none none',
-      },
-    });
-
-    tl.fromTo(
-      largeTextRef.current,
-      { opacity: 0, scale: 1 },
-      {
-        opacity: 1,
-        scale: 1.2,
-        duration: 1,
-        ease: 'power2.out',
-      }
-    ).to(largeTextRef.current, {
-      opacity: 0,
-      scale: 1.5,
-      duration: 0.8,
-      ease: 'power2.in',
-    });
-
-    tl.fromTo(
-      formContainerRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-      },
-      '-=0.4'
-    );
-
-    gsap.to(formContainerRef.current, {
-      opacity: 1,
-      duration: 0,
-      delay: 2.5,
-    });
-
-    // Footer GSAP animation
-    gsap.fromTo(
-      footerRef.current,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      }
-    );
-
-    return () => {
-      smoother.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
   return (
-    
-    <div ref={wrapperRef} className="min-h-screen bg-gray-100 dark:bg-black text-black dark:text-white">
-      <div ref={contentRef}>
-        <div className="flex flex-col items-center justify-start pt-8">
-          {/* Contact Us Section */}
-          <div ref={contactRef} className="relative mt-12 w-full mx-auto bg-gray-100 dark:bg-black overflow-hidden">
-            <div className="hidden dark:block absolute inset-0">
-              <ShaderGradientCanvas
-                className='w-full h-full'
-                pixelDensity={1}
-                pointerEvents='none'
-              >
-                <ShaderGradient
-                  animate='on'
-                  type='sphere'
-                  wireframe={false}
-                  shader='defaults'
-                  uTime={0}
-                  uSpeed={0.3}
-                  uStrength={0.3}
-                  uDensity={0.8}
-                  uFrequency={5.5}
-                  uAmplitude={3.2}
-                  positionX={-0.1}
-                  positionY={0}
-                  positionZ={0}
-                  rotationX={0}
-                  rotationY={130}
-                  rotationZ={70}
-                  color1='#73bfc4'
-                  color2='#ff810a'
-                  color3='#8da0ce'
-                  reflection={0.4}
-                  cAzimuthAngle={270}
-                  cPolarAngle={180}
-                  cDistance={0.5}
-                  cameraZoom={15.1}
-                  lightType='env'
-                  brightness={0.8}
-                  envPreset='city'
-                  grain='on'
-                  toggleAxis={false}
-                  zoomOut={false}
-                  hoverState=''
-                  enableTransition={false}
-                />
-              </ShaderGradientCanvas>
-              {/* Fade overlays for smooth integration */}
-              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-            </div>
-            <div
-              ref={largeTextRef}
-              className="fixed mb-72 inset-0 flex items-center justify-center text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gold-400 dark:to-gold-600 z-50 pointer-events-none dark:text-yellow-500"
-            >
-              Contact Us
-            </div>
-            <div ref={formContainerRef} className="relative bg-gray-100 dark:bg-transparent rounded-lg p-6 max-w-6xl mx-auto">
-              {/* --- Contact Form --- */}
+    <div className={`min-h-screen bg-white dark:bg-black text-black dark:text-white ${poppins.className}`}>
+      <Navbar />
+
+      {/* CONTACT SECTION */}
+      <section className="px-6 md:px-20 pt-24 pb-24">
+        <div className="max-w-7xl mx-auto">
+
+          {/* TYPOGRAPHY HERO */}
+          <div className="mb-24">
+            <h1 className="text-[14vw] md:text-[10vw] leading-[0.9] font-black uppercase tracking-tight">
+              Let’s
+              <br />
+              Talk<span className="text-yellow-500">.</span>
+            </h1>
+
+            <p className="mt-6 max-w-xl text-lg text-gray-500 dark:text-gray-400">
+              Tell us what you’re building.  
+              We help small businesses turn ideas into powerful websites.
+            </p>
+          </div>
+
+          {/* FORM + VISUAL GRID */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* FORM CONTAINER */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="max-w-3xl p-8 md:p-12 border border-yellow-500/20 dark:border-yellow-400/20 bg-gradient-to-br from-yellow-50/70 via-white/60 to-yellow-100/70
+          dark:from-yellow-400/5 dark:via-black/20 dark:to-yellow-500/10 backdrop-blur-sm">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-12">
+
+              {/* NAME */}
               <div>
-                {/* <h2 className='text-sm font-bold text-center dark:text-gold-400'>
-                  Contact Us
-                </h2> */}
-                <h2 className="text-5xl mt-20 font-bold text-center text-yellow-500 dark:text-gold-400">
-                  Get in Touch with us
-                </h2>
-                <p className="text-gray-600 dark:text-white mt-2 text-center">
-                  Reach out for any business plan in your mind
-                </p>
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-8 mt-10 px-4 sm:px-10 md:px-20 lg:px-40">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-white font-sans">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder='Enter your name'
-                      className={`w-full mt-1 p-3 border-1 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-white dark:text-white/200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.name ? 'border-red-500' : ''}`}
-                      required
-                      aria-describedby="name-error"
-                    />
-                    {errors.name && (
-                      <p id="name-error" className="text-red-500 text-sm mt-1">
-                        Please enter a valid name
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-white font-sans">
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder='Enter your email'
-                      className={`w-full mt-1 p-3 border-1 text-white dark:text-white/200 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.email ? 'border-red-500' : ''}`}
-                      required
-                      aria-describedby="email-error"
-                    />
-                    {errors.email && (
-                      <p id="email-error" className="text-red-500 text-sm mt-1">
-                        Please enter a valid email
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-white font-sans">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder='Enter your needs'
-                      rows="4"
-                      className={`w-full mt-1 p-3 border-1 text-white dark:text-white/200 border-gray-300 dark:border-gold-600 rounded-lg bg-white dark:bg-black/50 text-black dark:text-gold-200 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gold-400 focus:border-transparent transition hover:border-gray-400 dark:hover:border-gold-500 ${errors.message ? 'border-red-500' : ''}`}
-                      required
-                      aria-describedby="message-error"
-                    ></textarea>
-                    {errors.message && (
-                      <p id="message-error" className="text-red-500 text-sm mt-1">
-                        Please enter a message
-                      </p>
-                    )}
-                  </div>
-                  <div className='flex justify-center'>
-                    <button
-                      type="submit"
-                      className="py-3 px-4 bg-yellow-500 cursor-pointer dark:bg-gradient-to-r dark:from-gold-300 dark:to-gold-500 text-white rounded-lg shadow-md hover:bg-black hover:text-white dark:hover:from-gold-400 dark:hover:to-gold-600 transition ease-in duration-300"
-                    >
-                      Send your request
-                    </button>
-                  </div>
-                </form>
-                
+                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+                  Name
+                </label>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  className={`w-full bg-transparent border-b text-2xl py-4 outline-none transition
+                    ${errors.name ? 'border-red-500' : 'border-gray-600 focus:border-yellow-500'}
+                  `}
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-2">
+                    Please enter your name
+                  </p>
+                )}
               </div>
-             
-            </div>
+
+              {/* EMAIL */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+                  Email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className={`w-full bg-transparent border-b text-2xl py-4 outline-none transition
+                    ${errors.email ? 'border-red-500' : 'border-gray-600 focus:border-yellow-500'}
+                  `}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-2">
+                    Please enter a valid email
+                  </p>
+                )}
+              </div>
+
+              {/* MESSAGE */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={3}
+                  placeholder="Tell us about your project"
+                  className={`w-full bg-transparent border-b text-2xl py-4 outline-none resize-none transition
+                    ${errors.message ? 'border-red-500' : 'border-gray-600 focus:border-yellow-500'}
+                  `}
+                />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-2">
+                    Please enter a message
+                  </p>
+                )}
+              </div>
+
+              {/* CTA */}
+              <div className="pt-6">
+                <button
+                  type="submit"
+                  className=" text-xl font-bold text-black px-10 py-4 bg-orange-500 hover:bg-orange-600 transition hover:scale-[1.05] active:scale-[0.97]">
+                  Send Message
+                </button>
+              </div>
+
+            </form>
+          </motion.div>
+
+          {/* RIGHT SIDE BLOBS */}
+          <div className="relative hidden lg:flex items-center justify-center w-full h-[520px]">
+
+            {/* YELLOW BLOB (TOP) */}
+            <motion.div
+              className="absolute -top-100 left-10"
+              animate={{ y: [0, -15, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Image
+                src="/blobs/yellow-blob.svg"
+                alt="Yellow decorative blob"
+                width={400}
+                height={400}
+                className="opacity-70"
+              />
+            </motion.div>
+
+            {/* ORANGE BLOB (DIAGONAL BOTTOM) */}
+            <motion.div
+              className="absolute -bottom-20 -right-15"
+              animate={{ y: [0, 20, 0] }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Image
+                src="/blobs/orange-blob.svg"
+                alt="Orange decorative blob"
+                width={600}
+                height={200}
+                className="opacity-80 rotate-12"
+              />
+            </motion.div>
+
+          </div>
+
           </div>
         </div>
-        <div className={orbitron.className}>
-      
-      </div>
-      </div>
+       
+      </section>
+      <Footer />
       <Toaster />
     </div>
-
   );
 }

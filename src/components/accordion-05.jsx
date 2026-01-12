@@ -27,7 +27,7 @@ const faqItems = [
 export default function FAQSection() {
   return (
     <section className="relative w-full p-4 bg-white z-[70]">
-      <div className="relative w-full rounded-t-[3rem] bg-white overflow-hidden flex items-center">
+      <div className="relative w-full bg-white overflow-hidden flex items-center">
         
 
         {/* Accordion Container */}

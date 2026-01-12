@@ -14,12 +14,6 @@ const OurWork = () => {
       code: "#1",
     },
     {
-      src: "/a2.jpg",
-      title: "PassVault",
-      url: "https://pass-vault-psi.vercel.app/",
-      code: "#2",
-    },
-    {
       src: "/s1.jpg",
       title: "MaiaEvents",
       url: "https://maiaevents.in/",
@@ -45,9 +39,15 @@ const OurWork = () => {
     },
     {
       src: "a1.jpg",
-      title: "UrbanNest",
-      url: "https://urban-nest-6esd.vercel.app/",
+      title: "EdlyEdly: E-Learning",
+      url: "https://edly-elearning.vercel.app/",
       code: "#7",
+    },
+    {
+      src: "a1.jpg",
+      title: "VIV AI",
+      url: "https://viv-landing-virid.vercel.app/",
+      code: "#8",
     },
   ];
 

@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/logo.png" sizes="any" />
         <link href="https://api.fontshare.com/v2/css?f[]=rosaline@400&display=swap" rel="stylesheet"></link>
         <link href="https://api.fontshare.com/v2/css?f[]=bebas-neue@400&display=swap" rel="stylesheet"></link>
+        <link href="https://api.fontshare.com/v2/css?f[]=excon@700&display=swap" rel="stylesheet"></link>
       </head>
       <body
         className={poppins.variable}

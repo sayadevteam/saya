@@ -50,7 +50,7 @@ const Footer = () => {
     <>
     
       <div
-        className="relative h-full sm:pt-14 pt-8 bg-[#f7f7f7] text-black"
+        className="relative h-full sm:pt-14 pt-8 bg-white rounded-[3rem] text-black"
         ref={container}
       >
         

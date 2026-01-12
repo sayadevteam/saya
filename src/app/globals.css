@@ -256,7 +256,12 @@
   font-weight: 500;
 }
 
+.font-regular{
+  font-weight: 1000;
+}
+
 @theme{
   --font-rosaline: 'Rosaline', cursive;
   --font-regular: 'Bebas Neue', sans-serif;
+  --font-excon: 'Excon', sans-serif;
 }

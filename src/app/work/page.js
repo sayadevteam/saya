@@ -3,38 +3,51 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 
 const OurWork = () => {
   const images = [
     {
       src: "/image.png",
-      alt: "Illustrations by my fav AarzooAly",
-      code: "# 23",
+      title: "OJUS",
+      url: "https://ojus-culturals.vercel.app/",
+      code: "#1",
     },
     {
-      src: "/image.png",
-      alt: "Illustrations by ©AarzooAly",
-      code: "# 23",
+      src: "/a2.jpg",
+      title: "PassVault",
+      url: "https://pass-vault-psi.vercel.app/",
+      code: "#2",
     },
     {
-      src: "/image.png",
-      alt: "Illustrations by ©AarzooAly",
-      code: "# 23",
+      src: "/s1.jpg",
+      title: "MaiaEvents",
+      url: "https://maiaevents.in/",
+      code: "#3",
     },
     {
-      src: "/image.png",
-      alt: "Illustrations by ©AarzooAly",
-      code: "# 23",
+      src: "a3.jpg",
+      title: "vehiQL",
+      url: "https://rydo-sooty.vercel.app/",
+      code: "#4",
     },
     {
-      src: "/image.png",
-      alt: "Illustrations by ©AarzooAly",
-      code: "# 23",
+      src: "/y1.jpg",
+      title: "TravelHub",
+      url: "https://travel-lovat-theta.vercel.app/",
+      code: "#5",
     },
     {
-      src: "/image.png",
-      alt: "Illustrations by ©AarzooAly",
-      code: "# 23",
+      src: "/y2.jpg",
+      title: "Growth Chronicles",
+      url: "https://growth-chronicles.vercel.app/",
+      code: "#6",
+    },
+    {
+      src: "a1.jpg",
+      title: "UrbanNest",
+      url: "https://urban-nest-6esd.vercel.app/",
+      code: "#7",
     },
   ];
 
@@ -42,12 +55,11 @@ const OurWork = () => {
     <section className="w-screen min-h-screen flex flex-col bg-[#f5f4f3] overflow-hidden">
       {/* Top - Title */}
       <div className="w-full h-[20vh] flex items-start justify-start p-6 sm:p-12 pt-20 sm:pt-16">
-  <h2 className="text-7xl sm:text-[15vh] font-extrabold text-black font-regular uppercase tracking-wider ">
-    Our Work
-  </h2>
-</div>
+        <h2 className="text-7xl sm:text-[15vh] font-extrabold text-black font-regular uppercase tracking-wider ">
+          Our Work
+        </h2>
+      </div>
 
-      
       {/* Bottom - Responsive component */}
       <div className="w-full overflow-hidden bg-[#f5f4f3]">
         <HoverExpand_001 
@@ -117,18 +129,33 @@ const HoverExpand_001 = ({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute flex h-full w-full flex-col items-end justify-end p-8"
+                    className="absolute flex h-full w-full flex-col items-start justify-end p-8 gap-4"
                   >
+                    <p className="text-left text-3xl font-bold text-white">
+                      {image.title}
+                    </p>
                     <p className="text-left text-base text-white/50">
                       {image.code}
                     </p>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(image.url, '_blank');
+                      }}
+                      className="group relative flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl text-white font-semibold text-sm hover:bg-white/20 hover:border-white/50 transition-all duration-200 overflow-hidden"
+                    >
+                      <span className="flex-1 text-left">{image.title}</span>
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                    </motion.button>
                   </motion.div>
                 )}
               </AnimatePresence>
               <img
                 src={image.src}
                 className="size-full object-cover"
-                alt={image.alt}
+                alt={image.title}
               />
             </motion.div>
           ))}
@@ -189,18 +216,33 @@ const HoverExpand_002 = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  className="absolute flex h-full w-full flex-col items-end justify-end px-6 pb-6"
+                  className="absolute flex h-full w-full flex-col items-start justify-end px-6 pb-6 gap-3"
                 >
+                  <p className="text-left text-2xl font-bold text-white">
+                    {image.title}
+                  </p>
                   <p className="text-left text-sm text-white/50">
                     {images[index].code}
                   </p>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(image.url, '_blank');
+                    }}
+                    className="group relative flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl text-white font-semibold text-sm hover:bg-white/20 hover:border-white/50 transition-all duration-200 overflow-hidden"
+                  >
+                    <span className="flex-1 text-left">{image.title}</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  </motion.button>
                 </motion.div>
               )}
             </AnimatePresence>
             <img
               src={image.src}
               className="size-full object-cover w-full h-full"
-              alt={image.alt}
+              alt={image.title}
             />
           </motion.div>
         ))}

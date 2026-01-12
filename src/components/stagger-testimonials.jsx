@@ -158,7 +158,7 @@ const TestimonialCard = ({
         boxShadow: isCenter ? "0px 8px 0px 4px hsl(var(--border))" : "0px 0px 0px 0px transparent"
       }}>
       <span
-        className="absolute block origin-top-right rotate-45 bg-border"
+        className="absolute block origin-top-right rotate-45 "
         style={{
           right: -2,
           top: 48,
@@ -225,7 +225,7 @@ export const StaggerTestimonials = () => {
 
   return (
     <div
-      className="relative w-full overflow-hidden bg-muted/30"
+      className="relative w-full overflow-hidden "
       style={{ height: 600 }}>
       {testimonialsList.map((testimonial, index) => {
         const position = testimonialsList.length % 2

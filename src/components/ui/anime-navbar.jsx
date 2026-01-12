@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react"; // Make sure to install lucide-react
+import { Menu, X } from "lucide-react";
+import { useScrollDirection } from "@/hooks/useScrollDirection"; // Import the hook
 
 export function AnimeNavBar({
   items,
@@ -13,7 +14,10 @@ export function AnimeNavBar({
   const [mounted, setMounted] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
   const [activeTab, setActiveTab] = useState(defaultActive);
-  const [isOpen, setIsOpen] = useState(false); // Mobile Menu State
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Add scroll direction detection
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     setMounted(true);
@@ -32,7 +36,7 @@ export function AnimeNavBar({
 
   const handleNavigation = (item) => {
     setActiveTab(item.name);
-    setIsOpen(false); // Close mobile menu on click
+    setIsOpen(false);
 
     const target = document.querySelector(item.url);
     if (target) {
@@ -45,7 +49,21 @@ export function AnimeNavBar({
 
   return (
     <>
-      <div className="fixed top-3 left-0 right-0 z-[9999]">
+      {/* Animated navbar container */}
+<motion.div 
+  className="fixed top-3 left-0 right-0 z-[9999]"
+  initial={{ y: 0, opacity: 1 }}
+  animate={{ 
+    y: scrollDirection === "down" ? -120 : 0,
+    opacity: scrollDirection === "down" ? 0 : 1
+  }}
+  transition={{ 
+    type: "spring", 
+    stiffness: 300, 
+    damping: 25 
+  }}
+>
+
         <div
           className={cn(
             "mx-6 md:mx-10 grid grid-cols-2 md:grid-cols-3 items-center",
@@ -63,7 +81,6 @@ export function AnimeNavBar({
           </div>
 
           {/* 2. DESKTOP NAVIGATION (Hidden on mobile, Flex on MD+) */}
-          {/* This preserves your exact original desktop styling */}
           <motion.div
             className="hidden md:flex mx-auto items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-3 rounded-full shadow-lg relative"
             initial={{ y: -20, opacity: 0 }}
@@ -129,13 +146,13 @@ export function AnimeNavBar({
           <div className="flex justify-end md:hidden">
             <button
               onClick={() => setIsOpen(true)}
-              className="p-2 rounded-full mr-4 text-black "
+              className="p-2 rounded-full mr-4 text-black"
             >
               <Menu size={24} />
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* 4. MOBILE SIDEBAR OVERLAY */}
       <AnimatePresence>
@@ -159,7 +176,7 @@ export function AnimeNavBar({
               className="fixed top-0 right-0 h-full w-[280px] sm:w-[350px] bg-black/90 border-l border-white/10 z-[10001] shadow-2xl p-6 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center justify-between mb-8">
                 <span className="text-xl font-bold text-white tracking-wider">
                   MENU
                 </span>

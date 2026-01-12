@@ -129,6 +129,9 @@ export default function Page() {
 
             {/* THIRD SECTION - STICKY ORANGE */}
             {/* STAGE 1: IDEATION (Orange) */}
+            <div className="bg-[#fdfbf7]">
+
+            
             <section className="h-screen mx-3 sticky top-20 p-4 bg-orange-600 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-10">
               <div className="relative z-10 max-w-4xl px-6">
                 <span className="text-orange-200 font-bold tracking-widest uppercase text-sm mb-4 block">
@@ -145,7 +148,7 @@ export default function Page() {
             </section>
 
             {/* STAGE 2: ARCHITECTURE (Deep Orange/Red) */}
-            <section className="h-screen mx-3 sticky top-24 p-4 bg-orange-700 flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-20">
+            <section className="h-screen mx-3 sticky top-24 p-4 bg-[#B3001B] flex items-center justify-center text-center rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.2)] z-20">
               <div className="relative z-10 max-w-4xl px-6">
                 <span className="text-orange-200 font-bold tracking-widest uppercase text-sm mb-4 block">
                   Step 02 — Architecture
@@ -211,8 +214,8 @@ export default function Page() {
             </section>
 
             {/* FINAL SECTION - CONTACT */}
-            <section className="relative w-full p-4 bg-[#fdfbf7] z-[60]">
-              <div className="relative min-h-screen w-full rounded-[3rem] bg-white overflow-hidden flex flex-col items-center justify-center text-center px-6">
+            <section className="relative w-full p-4 bg-[#fdfbf7] z-[60] rounded-t-[3rem]">
+              <div className="relative min-h-screen w-full rounded-[3rem] bg-white border-t border-orange-100 overflow-hidden flex flex-col items-center justify-center text-center px-6">
                 <div className="absolute inset-0 bg-[#fdfbf7] -z-10" />
                 <div className="relative z-10 max-w-2xl">
                   <h1 className="text-6xl md:text-8xl font-extrabold text-black tracking-tighter leading-none">
@@ -232,7 +235,9 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              
             </section>
+            </div>
 
             <section className="relative w-full p-4 bg-[#fdfbf7] z-[60]">
               <div className="relative min-h-screen w-full rounded-[3rem] bg-white border border-orange-300 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
@@ -258,8 +263,8 @@ export default function Page() {
               </div>
             </section>
 
-            <section className="relative w-full p-4 bg-white z-[70]">
-              <div className="relative min-h-screen w-full rounded-t-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
+            <section className="relative w-full p-4 bg-[#fdfbf7] z-[70]">
+              <div className="relative min-h-screen w-full rounded-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
                 {/* Background Textures */}
 
                 {/* Header Section */}
@@ -285,7 +290,7 @@ export default function Page() {
               </div>
             </section>
 
-            <section className="relative w-full p-4 bg-white z-[70] overflow-hidden">
+            <section className="relative w-full p-4 bg-[#fdfbf7] z-[70] overflow-hidden">
               <Footer />
             </section>
           </article>

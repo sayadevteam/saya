@@ -197,7 +197,7 @@ const Footer = () => {
           </div>
           <div className="flex md:flex-row flex-col-reverse gap-3 justify-between py-2">
             <span className="font-medium">
-              &copy; 2023 NextCodez. All Rights Reserved.
+              &copy; 2026 SAYA. All Rights Reserved.
             </span>
             <a href="#" className="font-semibold">
               Privacy Policy

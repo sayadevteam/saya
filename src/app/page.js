@@ -239,14 +239,14 @@ export default function Page() {
             </section>
             </div>
 
-            <section className="relative w-full p-4 bg-[#fdfbf7] z-[60]">
+            {/* <section className="relative w-full p-4 bg-[#fdfbf7] z-[60]">
               <div className="relative min-h-screen w-full rounded-[3rem] bg-white border border-orange-300 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">
-                {/* Background Textures */}
+
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#f9731612_1px,transparent_1px),linear-gradient(to_bottom,#f9731612_1px,transparent_1px)] bg-[size:54px_54px] -z-10" />
                 <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-yellow-200/20 blur-[100px] rounded-full -z-10" />
                 <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-200/20 blur-[100px] rounded-full -z-10" />
 
-                {/* Header Content */}
+
                 <div className="relative z-10 text-center mb-16">
                   <div className="inline-flex items-center gap-2 px-3 rounded-full bg-orange-50 border border-orange-100"></div>
 
@@ -256,12 +256,11 @@ export default function Page() {
                   </h2>
                 </div>
 
-                {/* Component Container */}
                 <div className="w-full max-w-7xl mx-auto flex-1">
                   <StaggerTestimonials />
                 </div>
               </div>
-            </section>
+            </section> */}
 
             <section className="relative w-full p-4 bg-[#fdfbf7] z-[70]">
               <div className="relative min-h-screen w-full rounded-[3rem] bg-white  border-t border-orange-100 overflow-hidden shadow-sm flex flex-col items-center py-24 px-6">

@@ -5,35 +5,26 @@ import { Home, FileText, CreditCard, Info } from "lucide-react"
 import { AnimeNavBar } from "@/components/ui/anime-navbar"
 import { Button } from "./ui/button"
 
+// Inside Navbar component
 const items = [
   {
     name: "Home",
-    url: "#",
-    href: "#",
+    url: "#hero", // Matches <section id="hero">
     icon: Home,
   },
   {
     name: "Description",
-    url: "#",
-    href: "#",
+    url: "#description", // Matches <section id="description">
     icon: FileText,
   },
   {
     name: "Workflow",
-    url: "#",
-    href: "#",
+    url: "#workflow", // Matches <div id="workflow">
     icon: CreditCard,
   },
   {
-    name: "Testimonials",
-    url: "#",
-    href: "#",
-    icon: Info,
-  },
-  {
     name: "Contact",
-    url: "/contact",
-    href: "#",
+    url: "#contact", // Matches <section id="contact">
     icon: Info,
   },
 ]

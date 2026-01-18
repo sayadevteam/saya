@@ -34,18 +34,35 @@ export function AnimeNavBar({
 
   if (!mounted) return null;
 
-  const handleNavigation = (item) => {
-    setActiveTab(item.name);
-    setIsOpen(false);
+  // Inside AnimeNavBar component
+const handleNavigation = (item) => {
+  setActiveTab(item.name);
+  setIsOpen(false);
 
-    const target = document.querySelector(item.url);
-    if (target) {
-      target.scrollIntoView({
+  // 1. Check if the URL is an internal anchor
+  if (item.url.startsWith("#")) {
+    const targetId = item.url.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      // 2. Get the vertical position of the element
+      // Subtracting an offset (e.g., 80px) ensures the header doesn't cover the title
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
         behavior: "smooth",
-        block: "start",
       });
     }
-  };
+  } else {
+    // Handle external links if necessary
+    window.location.href = item.url;
+  }
+};
 
   return (
     <>

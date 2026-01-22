@@ -1,252 +1,131 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 
 const OurWork = () => {
-  const images = [
+  const projects = [
+    {
+      src: "/dakhya.png",
+      title: "Dakhya Financial Consultancy",
+      url: "https://www.dakhyaconsultancy.in/",
+      code: "1",
+    },
+    {
+      src: "vivai.png",
+      title: "VIV AI",
+      url: "https://viv-landing-virid.vercel.app/",
+      code: "2",
+    },
+    {
+      src: "travel.png",
+      title: "TravelHub",
+      url: "https://travel-lovat-theta.vercel.app/",
+      code: "3",
+    },
+    {
+      src: "maia.png",
+      title: "MaiaEvents",
+      url: "https://maiaevents.in/",
+      code: "4",
+    },
+    // {
+    //   src: "a3.jpg",
+    //   title: "vehiQL",
+    //   url: "https://rydo-sooty.vercel.app/",
+    //   code: "#4",
+    // },
+    {
+      src: "y2.png",
+      title: "Growth Chronicles",
+      url: "https://growth-chronicles.vercel.app/",
+      code: "5",
+    },
+    {
+      src: "edly.jpeg",
+      title: "Edly: E-Learning",
+      url: "https://edly-elearning.vercel.app/",
+      code: "6",
+    },
     {
       src: "/image.png",
       title: "OJUS",
       url: "https://ojus-culturals.vercel.app/",
-      code: "#1",
-    },
-    {
-      src: "/s1.jpg",
-      title: "MaiaEvents",
-      url: "https://maiaevents.in/",
-      code: "#3",
-    },
-    {
-      src: "a3.jpg",
-      title: "vehiQL",
-      url: "https://rydo-sooty.vercel.app/",
-      code: "#4",
-    },
-    {
-      src: "/y1.jpg",
-      title: "TravelHub",
-      url: "https://travel-lovat-theta.vercel.app/",
-      code: "#5",
-    },
-    {
-      src: "/y2.jpg",
-      title: "Growth Chronicles",
-      url: "https://growth-chronicles.vercel.app/",
-      code: "#6",
-    },
-    {
-      src: "a1.jpg",
-      title: "EdlyEdly: E-Learning",
-      url: "https://edly-elearning.vercel.app/",
-      code: "#7",
-    },
-    {
-      src: "a1.jpg",
-      title: "VIV AI",
-      url: "https://viv-landing-virid.vercel.app/",
-      code: "#8",
+      code: "7",
     },
   ];
 
   return (
-    <section className="w-screen min-h-screen flex flex-col bg-[#f5f4f3] overflow-hidden">
-      {/* Top - Title */}
-      <div className="w-full h-[20vh] flex items-start justify-start p-6 sm:p-12 pt-20 sm:pt-16">
-        <h2 className="text-7xl sm:text-[15vh] font-extrabold text-black font-regular uppercase tracking-wider ">
+    <section className="w-full min-h-screen bg-[#f5f4f3] py-20 px-6 sm:px-12">
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto mb-16">
+        <h2 className="text-6xl sm:text-8xl font-black text-black uppercase tracking-tighter">
           Our Work
         </h2>
+        <div className="h-1 w-24 bg-black mt-4" />
       </div>
 
-      {/* Bottom - Responsive component */}
-      <div className="w-full overflow-hidden bg-[#f5f4f3]">
-        <HoverExpand_001 
-          images={images} 
-          isMobile={false}
-          className="hidden lg:block "
-        />
-        <HoverExpand_002 
-          images={images} 
-          className="lg:hidden block"
-        />
+      {/* Modern Grid UI */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+        {projects.map((project, index) => (
+          <ProjectCard key={index} project={project} index={index} />
+        ))}
       </div>
     </section>
   );
 };
 
-// Desktop: Horizontal (existing)
-const HoverExpand_001 = ({
-  images,
-  className,
-}) => {
-  const [activeImage, setActiveImage] = useState(1);
-
+const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, translateY: 20 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: 0.5,
-      }}
-      className={cn("relative w-full h-[70vh] p-10", className)}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group flex flex-col gap-4"
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="w-full h-full flex items-start justify-start"
+      {/* Image Container */}
+      <div 
+        onClick={() => window.open(project.url, '_blank')}
+        className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gray-200 cursor-pointer shadow-sm group-hover:shadow-xl transition-shadow duration-500"
       >
-        <div className="flex w-full max-w-7xl items-center justify-center gap-3">
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              className="relative cursor-pointer overflow-hidden rounded-3xl"
-              initial={{ width: "3.5rem", height: "24rem" }}
-              animate={{
-                width: activeImage === index ? "32rem" : "7rem",
-                height: activeImage === index ? "32rem" : "32rem",
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              onClick={() => setActiveImage(index)}
-              onHoverStart={() => setActiveImage(index)}
-            >
-              <AnimatePresence>
-                {activeImage === index && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute h-full w-full bg-gradient-to-t from-black/40 to-transparent"
-                  />
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {activeImage === index && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute flex h-full w-full flex-col items-start justify-end p-8 gap-4"
-                  >
-                    <p className="text-left text-3xl font-bold text-white">
-                      {image.title}
-                    </p>
-                    <p className="text-left text-base text-white/50">
-                      {image.code}
-                    </p>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(image.url, '_blank');
-                      }}
-                      className="group relative flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl text-white font-semibold text-sm hover:bg-white/20 hover:border-white/50 transition-all duration-200 overflow-hidden"
-                    >
-                      <span className="flex-1 text-left">{image.title}</span>
-                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                    </motion.button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <img
-                src={image.src}
-                className="size-full object-cover"
-                alt={image.title}
-              />
-            </motion.div>
-          ))}
+        <motion.img
+          src={project.src}
+          alt={project.title}
+          className="size-full object-cover"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+        />
+        
+        {/* Subtle Overlay on Hover */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+      </div>
+
+      {/* Project Info */}
+      <div className="flex justify-between items-start pt-2">
+        <div className="space-y-1">
+          <span className="text-xs font-bold text-black/40 uppercase tracking-widest">
+            Project {project.code}
+          </span>
+          <h3 className="text-2xl font-bold text-black flex items-center gap-2">
+            {project.title}
+          </h3>
         </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-// Mobile: Vertical (HoverExpand_002 adapted)
-const HoverExpand_002 = ({
-  images,
-  className,
-}) => {
-  const [activeImage, setActiveImage] = useState(1);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, translateY: 20 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: 0.5,
-      }}
-      className={cn("relative w-full h-screen px-5 py-8", className)}
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="w-full h-full flex flex-col items-center justify-center gap-4"
-      >
-        {images.map((image, index) => (
-          <motion.div
-            key={index}
-            className="group relative cursor-pointer overflow-hidden rounded-3xl w-full max-w-md"
-            initial={{ height: "3rem", width: "100%" }}
-            animate={{
-              height: activeImage === index ? "70vh" : "3rem",
-            }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            onClick={() => setActiveImage(index)}
-            onHoverStart={() => setActiveImage(index)}
-          >
-            <AnimatePresence>
-              {activeImage === index && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute h-full w-full bg-gradient-to-t from-black/50 to-transparent"
-                />
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {activeImage === index && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  className="absolute flex h-full w-full flex-col items-start justify-end px-6 pb-6 gap-3"
-                >
-                  <p className="text-left text-2xl font-bold text-white">
-                    {image.title}
-                  </p>
-                  <p className="text-left text-sm text-white/50">
-                    {images[index].code}
-                  </p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(image.url, '_blank');
-                    }}
-                    className="group relative flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl text-white font-semibold text-sm hover:bg-white/20 hover:border-white/50 transition-all duration-200 overflow-hidden"
-                  >
-                    <span className="flex-1 text-left">{image.title}</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                  </motion.button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <img
-              src={image.src}
-              className="size-full object-cover w-full h-full"
-              alt={image.title}
-            />
-          </motion.div>
-        ))}
-      </motion.div>
+        
+        <motion.button
+          whileHover={{ scale: 1.1, rotate: 45 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.open(project.url, '_blank')}
+          className="p-4 bg-white rounded-full border border-black/5 shadow-sm group-hover:bg-black group-hover:text-white transition-colors duration-300"
+        >
+          <ArrowUpRight className="w-5 h-5" />
+        </motion.button>
+      </div>
+      
+      {/* Separator Line */}
+      <div className="w-full h-[1px] bg-black/5 group-hover:bg-black/20 transition-colors" />
     </motion.div>
   );
 };

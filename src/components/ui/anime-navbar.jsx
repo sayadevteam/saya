@@ -6,16 +6,12 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useScrollDirection } from "@/hooks/useScrollDirection"; // Import the hook
 
-export function AnimeNavBar({
-  items,
-  className,
-  defaultActive = "Home",
-}) {
+export function AnimeNavBar({ items, className, defaultActive = "Home" }) {
   const [mounted, setMounted] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
   const [activeTab, setActiveTab] = useState(defaultActive);
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Add scroll direction detection
   const scrollDirection = useScrollDirection();
 
@@ -35,56 +31,55 @@ export function AnimeNavBar({
   if (!mounted) return null;
 
   // Inside AnimeNavBar component
-const handleNavigation = (item) => {
-  setActiveTab(item.name);
-  setIsOpen(false);
+  const handleNavigation = (item) => {
+    setActiveTab(item.name);
+    setIsOpen(false);
 
-  // 1. Check if the URL is an internal anchor
-  if (item.url.startsWith("#")) {
-    const targetId = item.url.replace("#", "");
-    const element = document.getElementById(targetId);
+    // 1. Check if the URL is an internal anchor
+    if (item.url.startsWith("#")) {
+      const targetId = item.url.replace("#", "");
+      const element = document.getElementById(targetId);
 
-    if (element) {
-      // 2. Get the vertical position of the element
-      // Subtracting an offset (e.g., 80px) ensures the header doesn't cover the title
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+      if (element) {
+        // 2. Get the vertical position of the element
+        // Subtracting an offset (e.g., 80px) ensures the header doesn't cover the title
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      // Handle external links if necessary
+      window.location.href = item.url;
     }
-  } else {
-    // Handle external links if necessary
-    window.location.href = item.url;
-  }
-};
+  };
 
   return (
     <>
       {/* Animated navbar container */}
-<motion.div 
-  className="fixed top-3 left-0 right-0 z-[9999]"
-  initial={{ y: 0, opacity: 1 }}
-  animate={{ 
-    y: scrollDirection === "down" ? -120 : 0,
-    opacity: scrollDirection === "down" ? 0 : 1
-  }}
-  transition={{ 
-    type: "spring", 
-    stiffness: 300, 
-    damping: 25 
-  }}
->
-
+      <motion.div
+        className="fixed top-3 left-0 right-0 z-[9999]"
+        initial={{ y: 0, opacity: 1 }}
+        animate={{
+          y: scrollDirection === "down" ? -120 : 0,
+          opacity: scrollDirection === "down" ? 0 : 1,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 25,
+        }}
+      >
         <div
           className={cn(
             "mx-6 md:mx-10 grid grid-cols-2 md:grid-cols-3 items-center",
-            className
+            className,
           )}
         >
           {/* 1. Logo (Always Visible) */}
@@ -118,7 +113,7 @@ const handleNavigation = (item) => {
                   className={cn(
                     "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300",
                     "text-white/70 hover:bg-white hover:text-black",
-                    isActive && "bg-white text-black"
+                    isActive && "bg-white text-black",
                   )}
                 >
                   {/* Active Glow */}
@@ -222,23 +217,23 @@ const handleNavigation = (item) => {
                         "flex items-center gap-4 p-4 rounded-xl transition-all duration-300 group",
                         isActive
                           ? "bg-white text-black"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
+                          : "text-white/60 hover:text-white hover:bg-white/5",
                       )}
                     >
                       <Icon
                         size={20}
                         className={cn(
                           "transition-transform group-hover:scale-110",
-                          isActive && "text-black"
+                          isActive && "text-black",
                         )}
                       />
                       <span className="text-lg font-medium">{item.name}</span>
-                      
+
                       {/* Active Indicator Dot */}
                       {isActive && (
-                        <motion.div 
+                        <motion.div
                           layoutId="activeDot"
-                          className="ml-auto w-2 h-2 rounded-full bg-black" 
+                          className="ml-auto w-2 h-2 rounded-full bg-black"
                         />
                       )}
                     </motion.button>

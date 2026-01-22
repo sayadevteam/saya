@@ -88,7 +88,6 @@ export default function Contact() {
 
   return (
     <div className={`min-h-screen bg-white dark:bg-black text-black dark:text-white ${poppins.className}`}>
-      <Navbar />
 
       {/* CONTACT SECTION */}
       <section className="px-6 md:px-20 pt-24 pb-24">
